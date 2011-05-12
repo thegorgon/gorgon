@@ -1,0 +1,13 @@
+package_assets: on
+embed_assets: off
+javascript_compressor: closure
+
+javascripts:
+  vendor:
+    - public/javascripts/vendor/jquery-1.6.min.js
+    - public/javascripts/vendor/jquery.logger.js
+  scripts:
+    - public/javascripts/shared/gorgon.js
+stylesheets:
+  site:
+    - public/stylesheets/site.css

@@ -1,0 +1,1 @@
+window.Gorgon = window.Gorgon || {};

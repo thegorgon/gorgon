@@ -1,0 +1,46 @@
+header {
+  padding: 15px 25px;
+  color: #000;
+  .logo {
+    float: left;
+    display: block;
+  }
+  h1 {
+    font-weight: normal;
+    float: left;
+    font-size: 45px;
+    padding: 75px 0 0 25px;
+  }
+  nav {
+    float: right;
+    padding: 90px 0 0px 0;
+    font-size: 30px;
+    a, a:visited {
+      color: #000;
+      text-decoration: none;
+      padding: 0 10px;
+      &:hover {
+        text-shadow: none;
+        background: #000;
+        color: #fff;
+      }
+      &.active, &:active {
+        text-decoration: underline;
+      }
+    }
+  }
+  margin-bottom: 10px;
+}
+#bd {
+  .center {
+    margin: 0 auto;
+    text-align: center;
+  }
+  a, a:visited {
+    color: #666;
+    text-decoration: underline;
+    &:hover {
+      color: #000;
+    }
+  }
+}

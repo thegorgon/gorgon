@@ -1,0 +1,157 @@
+@mixin border_radius($n) {
+  border-radius: $n;
+  -moz-border-radius: $n;
+  -webkit-border-radius: $n; 
+}
+
+@mixin top_right_border_radius($n) {
+  border-top-right-radius: $n;
+  -moz-border-radius-topright: $n;
+  -webkit-border-top-right-radius: $n; 
+}
+
+@mixin top_left_border_radius($n) {
+  border-top-left-radius: $n;
+  -moz-border-radius-topleft: $n;
+  -webkit-border-top-left-radius: $n; 
+}
+
+@mixin bottom_right_border_radius($n) {
+  border-bottom-right-radius: $n;
+  -moz-border-radius-bottomright: $n;
+  -webkit-border-bottom-right-radius: $n; 
+}
+
+@mixin bottom_left_border_radius($n) {
+  border-bottom-left-radius: $n;
+  -moz-border-radius-bottomleft: $n;
+  -webkit-border-bottom-left-radius: $n; 
+}
+
+@mixin top_border_radius($n) {
+  @include top_left_border_radius($n);
+  @include top_right_border_radius($n); 
+}
+
+@mixin bottom_border_radius($n) {
+  @include bottom_left_border_radius($n);
+  @include bottom_right_border_radius($n); 
+}
+
+@mixin left_border_radius($n) {
+  @include top_left_border_radius($n);
+  @include bottom_left_border_radius($n); 
+}
+
+@mixin right_border_radius($n) {
+  @include top_right_border_radius($n);
+  @include bottom_right_border_radius($n); 
+}
+
+@mixin triangle_up($w, $h, $color) {
+  bottom: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  border-bottom: $h solid $color;
+  border-left: $w dotted transparent;
+  border-right: $w dotted transparent; 
+}
+
+@mixin triangle_down($w, $h, $color) {
+  bottom: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  border-top: $h solid $color;
+  border-left: $w dotted transparent;
+  border-right: $w dotted transparent; 
+}
+
+@mixin triangle_right($w, $h, $color) {
+  bottom: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  border-left: $w solid $color;
+  border-top: $h dotted transparent;
+  border-bottom: $h dotted transparent; 
+}
+
+@mixin triangle_left($w, $h, $color) {
+  bottom: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  border-right: $w solid $color;
+  border-top: $h dotted transparent;
+  border-bottom: $h dotted transparent; 
+}
+
+@mixin transition($rule) {
+  -webkit-transition: $rule; 
+  -moz-transition: $rule; 
+  -o-transition: $rule; 
+  transition: $rule;
+}
+
+@mixin transform($rule) {
+  -webkit-transform: $rule; 
+  -moz-transform: $rule; 
+  -o-transform: $rule; 
+  transform: $rule;  
+}
+
+@mixin gradient_top_down($from, $to, $point: 100%) {
+  background: -webkit-gradient(linear, left 0, left $point, from($from), to($to));
+  background: -moz-linear-gradient(top, $from, $to $point);
+}
+
+@mixin black_radial_gradient($radius) {
+  padding: 150px 100px;
+  background: #000;
+  background: transparent -moz-radial-gradient(center center, ellipse farthest-side, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0));
+  background: transparent -webkit-gradient(radial, 50% 50%, 0, 50% 50%, $radius, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+  background: transparent radial-gradient(center center, ellipse farthest-side, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0));  
+}
+
+@mixin box_shadow($shadow) {
+  -moz-box-shadow: $shadow;
+  -webkit-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+@mixin opacity($opacity) {
+  filter: unquote("alpha(opacity=") $opacity * 100 unquote(")");
+  -moz-opacity: $opacity;
+  -khtml-opacity: $opacity; 
+  opacity: $opacity;
+}
+
+@mixin divider($top, $bottom) {
+  height: 0;
+  border-top: 1px solid $top;
+  border-bottom: 1px solid $bottom;
+}
+
+// Don't allow wrapping.
+@mixin nowrap {
+  white-space: nowrap; 
+}
+
+// Clearfix for containers with all floated elements.
+@mixin clearfix {
+  overflow: hidden;
+  // This makes ie6 get layout
+  display: inline-block;
+  // and this puts it back to block
+  & {
+    display: block;    
+  }
+}
+
+@mixin ietransparentfix {
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF)"; /* IE8 */   
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);   /* IE6 & 7 */
+  zoom: 1;
+}
