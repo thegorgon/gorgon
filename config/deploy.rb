@@ -18,9 +18,9 @@ set :rails_env,     'production'
 ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
 
-role :web, "gorgon"                                        # Your HTTP server, Apache/etc
-role :app, "gorgon"                                        # This may be the same as your `Web` server
-role :db,  "gorgon", :primary => true                      # This is where Rails migrations will run
+role :web, "gorgon"
+role :app, "gorgon"
+role :db,  "gorgon", :primary => true
 
 
 namespace :deploy do
