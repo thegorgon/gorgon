@@ -5,7 +5,6 @@ gem 'capistrano'
 gem 'haml'
 gem 'sass'
 gem 'jammit'
-gem 'sqlite3', '1.2.5'
 gem 'nokogiri'
 gem 'curb'
 
