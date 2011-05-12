@@ -1,6 +1,1 @@
-.post
-  %h1.tk-divulge.engraved= @post.title.downcase.html_safe
-  .body= @post.body.html_safe
-  .divider
-  .link.center
-    =link_to "all entries", blog_path
+=render :partial => "post", :object => @post
