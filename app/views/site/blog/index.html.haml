@@ -3,6 +3,6 @@
     %h1.tk-divulge
       =link_to post.title.downcase.html_safe, blog_post_path(post)
     .preview= blog_post_preview(post)
-    .divider
+    %hr
     .link.center
       =link_to "full article", blog_post_path(post)
