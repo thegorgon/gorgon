@@ -16,8 +16,9 @@
   = auto_discovery_link_tag(:rss, "http://thegorgonlab.tumblr.com/rss")
   = csrf_meta_tag 
   = favicon_link_tag
-  = typekit_tag 'sya8ocg'
   = yield :head
+  = typekit_tag 'sya8ocg'
+  = analytics_tag 'UA-23324040-1'
 %body{:id => page_namespace, :class => "site #{controller_name}"}
   %header.tk-divulge.engraved.clearfix
     =link_to image_tag("logos/me202x75.png", :size => '151x56'), root_path, :class => 'logo'

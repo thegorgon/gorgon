@@ -8,6 +8,21 @@ module ApplicationHelper
     date.utc.strftime("%Y-%m-%dT%H:%M:%S+00:00")
   end
   
+  def analytics_tag(account_id)
+    content_tag(:script, :type => Mime::JS) do
+      "var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '#{account_id}']);
+      _gaq.push(['_setDomainName', '.thegorgonlab.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();"
+    end
+  end
+  
   def link_to_with_current(*args)
     options = args.extract_options!
     current_class = options.delete(:current_class) || "active"
