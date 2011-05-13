@@ -3,5 +3,6 @@ class Site::HomeController < Site::BaseController
   end
   
   def index
+    redirect_to blog_path
   end
 end
