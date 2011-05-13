@@ -30,3 +30,18 @@ namespace :deploy do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 end
+
+# JAMMIT Assets
+namespace :assets do
+  task :optimize, :roles => :web do
+    send(:run, "cd #{release_path} && RAILS_ENV=#{rails_env} rake sass:update")
+    send(:run, "cd #{release_path} && /usr/local/bin/jammit")
+  end
+end
+
+after 'deploy:update_code', 'assets:optimize'
+
+after 'deploy' do
+  system("git tag release-`date +%Y_%m_%d-%H%M`")
+  system("git push origin master --tags")
+end
