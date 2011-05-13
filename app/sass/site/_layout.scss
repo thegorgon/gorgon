@@ -32,6 +32,12 @@ header {
   margin-bottom: 10px;
 }
 #bd {
+  width: 100%;
+  position: absolute;
+  top: 130px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
   .center {
     margin: 0 auto;
     text-align: center;
