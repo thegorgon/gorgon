@@ -4,8 +4,16 @@ module ApplicationHelper
      <script type=\"text/javascript\">try{Typekit.load();}catch(e){}</script>".html_safe
   end
   
-  def w3c_date(date)
-    date.utc.strftime("%Y-%m-%dT%H:%M:%S+00:00")
+  def button_tag(options={}, &block)
+    options[:type] ||= 'submit'
+    button = "<button"
+    options.each do |k, v|
+      button << " #{k}=\"#{v}\""
+    end
+    button << "><div class=\"btntxt\">"
+    button << capture(&block) if block
+    button << "</div></button>"
+    button.html_safe
   end
   
   def analytics_tag(account_id)
@@ -49,7 +57,7 @@ module ApplicationHelper
   end
 
   def blog_post_preview(post)
-    body = post.body
+    body = post.body.to_s
     preview = ""
     body.scan(/\<p\>(.+?)<\/p\>/) do |m|
       if preview.length + m[0].to_s.length > 500
