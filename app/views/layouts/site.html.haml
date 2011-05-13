@@ -6,10 +6,14 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"><!--<![endif]-->
 %head
   %meta{'charset' => 'utf-8'}
-  %title the gorgon lab - rants and ravings from the mind of jesse reiss
+  %title= page_title
   %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
   %meta{'http-equiv' => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
   = include_stylesheets :site, :media => 'all'
+  = iphone_meta_tags
+  = seo_tags
+  = open_graph_tags
+  = auto_discovery_link_tag(:rss, "http://thegorgonlab.tumblr.com/rss")
   = csrf_meta_tag 
   = favicon_link_tag
   = typekit_tag 'sya8ocg'

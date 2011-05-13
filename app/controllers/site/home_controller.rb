@@ -3,6 +3,5 @@ class Site::HomeController < Site::BaseController
   end
   
   def index
-    @post = Tumblr::Item.paginate(:per_page => 1).first
   end
 end
