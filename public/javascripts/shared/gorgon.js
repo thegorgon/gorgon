@@ -33,6 +33,11 @@ window.Gorgon = window.Gorgon || {};
 $(document).ready(function() {
   $.popover.init();
   $.popover.bind();
-  
+  $.logger.debug($('.popover .cancel'));
+  $('.popover a.cancel').live('click', function(e) {
+    e.preventDefault();
+    $.popover.hide();
+  });
+    
   Gorgon.Views.run();
 });

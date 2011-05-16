@@ -1,0 +1,114 @@
+@media only screen and (max-device-width:480px) and (orientation:portrait) {
+  html, body {
+    width: 320px
+  }
+  header {
+    .logo {
+      width: 151px;
+      margin: 0 auto;
+      float: none;
+      display: block;
+    }
+    h1 {
+      font-size: 30px;
+    }
+    nav {
+      margin-top: 10px;
+      font-size: 20px;
+    }
+    nav, h1 {
+      margin: 0;
+      padding: 0;
+      float: none;
+      text-align: center;
+    }
+  }
+  #site_home_about {
+    #bd {
+      width: 300px;
+    }
+  }
+  .site_home, .site_blog {
+    #bd {
+      .post {
+        width: 300px;
+        margin: 0 auto;
+        h1 {
+          margin: 0 auto;
+        }
+        .comments {
+          width: 300px;
+          .addcomment {
+            margin-right: 50px;
+          }
+        } 
+      }
+    }
+    .newcomment {
+      width: 242px;
+      padding: 10px;
+      form {
+        width: 255px;
+        margin: 0 auto;
+        input, textarea {
+          width: 225px;
+        }
+        .cancel, button {
+          width: 238px;
+        }
+        .star {
+          margin: 5px 8px 0 0;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-device-width:480px) and (orientation:landscape) {
+  html, body {
+    width: 480px
+  }
+  header {
+    .logo {
+      width: 151px;
+      margin: 0 auto;
+      float: none;
+      display: block;
+    }
+    h1 {
+      font-size: 30px;
+    }
+    nav {
+      margin-top: 10px;
+      font-size: 20px;
+    }
+    nav, h1 {
+      margin: 0;
+      padding: 0;
+      float: none;
+      text-align: center;
+    }
+  }
+  #site_home_about {
+    #bd {
+      width: 460px;
+    }
+  }
+  .site_home, .site_blog {
+    #bd {
+      .post {
+        width: 460px;
+        margin: 0 auto;
+        h1 {
+          margin: 0 auto;
+        }
+        .comments {
+          width: 460px;
+          .addcomment {
+            margin-right: 50px;
+          }
+        } 
+      }
+    }
+  }
+}

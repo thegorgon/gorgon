@@ -5,7 +5,7 @@
   .comments{"data-src" => blog_post_comments_path(@post)}
     %h2.tk-divulge.engraved 
       Comments
-      =link_to "&#43;".html_safe, "#", :class => "addcomment", "data-popover" => "#newcommentform", "data-popover-title" => "Add Comment", "data-popover-pos" => "left,bottom"
+      =link_to "&#43;".html_safe, "#", :class => "addcomment", "data-popover" => "#newcommentform", "data-popover-title" => "Add Comment", "data-popover-pos" => "left,bottom", "data-popover-orient" => "vertical"
     %hr
     .emptymessage
       Nobody has had anything to say yet.
@@ -29,3 +29,4 @@
     %li
       =button_tag do
         comment
+      =link_to "cancel", "#", :class => 'cancel'
