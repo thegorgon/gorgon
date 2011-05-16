@@ -109,7 +109,7 @@ GEM
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
-    tumblrb (1.0.1)
+    tumblrb (1.0.2)
       curb (~> 0.7.15)
       nokogiri (~> 1.4.4)
     tzinfo (0.3.27)
