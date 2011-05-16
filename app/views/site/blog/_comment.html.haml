@@ -1,0 +1,14 @@
+%li.comment
+  %blockquote="#{comment.try(:body) || '${body}'}".html_safe
+  %details
+    -if comment.nil? || comment.url
+      =link_to comment.try(:author) || '${author}', comment.try(:url) || '${url}'
+    -else
+      =comment.author
+    &ndash;
+    -if comment
+      %time{:datetime => comment.created_at.getutc.iso8601}
+        ="#{time_ago_in_words(comment.created_at)} ago"
+    -else
+      %time{:datetime => '${created_at}'}
+        ="${$.timeago(created_at)}"

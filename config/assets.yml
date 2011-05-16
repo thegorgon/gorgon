@@ -6,8 +6,14 @@ javascripts:
   vendor:
     - public/javascripts/vendor/jquery-1.6.min.js
     - public/javascripts/vendor/jquery.logger.js
+    - public/javascripts/vendor/jquery.ajax.js
+    - public/javascripts/vendor/jquery.tmpl.js
+    - public/javascripts/vendor/jquery.timeago.js
   scripts:
+    - public/javascripts/shared/jquery.validate.js
+    - public/javascripts/shared/jquery.popovers.js
     - public/javascripts/shared/gorgon.js
+    - public/javascripts/shared/views.js
 stylesheets:
   site:
     - public/stylesheets/site.css

@@ -1,6 +1,31 @@
+-tumblr = @post.to_tumblr
 .post
-  %h1.tk-divulge.engraved= post.title.downcase.html_safe
-  .body= post.body.html_safe
+  %h1.tk-divulge.engraved= tumblr.title.downcase.html_safe
+  .body= tumblr.body.html_safe
+  .comments{"data-src" => blog_post_comments_path(@post)}
+    %h2.tk-divulge.engraved 
+      Comments
+      =link_to "&#43;".html_safe, "#", :class => "addcomment", "data-popover" => "#newcommentform", "data-popover-title" => "Add Comment", "data-popover-pos" => "left,bottom"
+    %hr
+    .emptymessage
+      Nobody has had anything to say yet.
+    %ul
   %hr
   .link.center
-    =link_to "all entries", blog_path
+    =link_to "back to blog", blog_path
+
+%script#commenttpl{:type => "text/x-jquery-tmpl"}
+  =render :partial => "/site/blog/comment", :object => nil
+
+%ul.newcomment.hidden#newcommentform
+  =form_for :comment, :url => blog_post_comments_path(@post), :html => {"novalidate" => "novalidate"} do |f|
+    %li
+      =f.text_field :author, :placeholder => "your name", :required => true
+      .star *
+    %li=f.text_field :url, :placeholder => "your website", :pattern => "^((http|https):\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$"
+    %li
+      =f.text_area :body, :placeholder => "your comment", :required => true
+      .star *
+    %li
+      =button_tag do
+        comment

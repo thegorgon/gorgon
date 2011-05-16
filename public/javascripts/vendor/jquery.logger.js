@@ -1,5 +1,5 @@
 (function($) {
-    var logLevel = 0;
+    var logLevel = 3;
     var _LEVELS = {
       NONE: 0,
       ERROR: 1,

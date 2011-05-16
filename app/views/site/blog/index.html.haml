@@ -1,8 +1,9 @@
 -@posts.each_with_index do |post, i|
+  -tumblr = post.to_tumblr
   .post{:class => first_or_last(i, @posts)}
     %h1.tk-divulge
-      =link_to post.title.downcase.html_safe, blog_post_path(post)
-    .preview= blog_post_preview(post)
+      =link_to tumblr.title.downcase.html_safe, blog_post_path(post)
+    .preview= blog_post_preview(tumblr)
     %hr
     .link.center
       =link_to "full article", blog_post_path(post)

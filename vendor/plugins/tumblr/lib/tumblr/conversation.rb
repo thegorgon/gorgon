@@ -2,7 +2,23 @@ module Tumblr
   class Conversation < Item
     attr_accessor :title, :text, :lines
     
-    class Line < Struct.new(:name, :label, :content); end
+    class Line < Struct.new(:name, :label, :content)
+      def as_json
+        {
+          :name => name,
+          :label => label,
+          :content => content
+        }
+      end
+    end
+
+    def as_json
+      super.merge!({
+        :title => title,
+        :text => text,
+        :lines => lines.map { |l| l.as_json }
+      })
+    end
 
     private
     
@@ -14,7 +30,6 @@ module Tumblr
         Line.new(line["name"], line["label"], label.content)
       end
       self
-    end
-    
+    end    
   end
 end

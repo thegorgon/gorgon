@@ -24,3 +24,20 @@ h1 {
     vertical-align: middle;
   }
 }
+button, .button {
+    display: block;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 0px 6px 0px; /* Links */
+    width: auto;
+    overflow: visible;
+    @extend .no_select;
+}
+.button {
+  padding: 0;
+}
+button[type]{
+    padding: 5px 0px 5px 0px; /* Firefox */
+    line-height: 17px; /* Safari */
+}

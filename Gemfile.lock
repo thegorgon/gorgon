@@ -110,6 +110,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.27)
+    will_paginate (3.0.pre2)
     yui-compressor (0.9.6)
       POpen4 (>= 0.1.4)
 
@@ -127,3 +128,4 @@ DEPENDENCIES
   rails (= 3.0.7)
   ruby-debug19
   sass
+  will_paginate (~> 3.0.pre2)

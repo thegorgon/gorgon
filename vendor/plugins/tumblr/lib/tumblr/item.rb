@@ -1,7 +1,7 @@
 module Tumblr
   class Item
     PAGE_SIZE = 20
-    attr_accessor :id, :slug, :type, :date, :format
+    attr_accessor :id, :slug, :type, :date, :format, :xml
     attr_accessor :tags
     
     def self.paginate(params={})
@@ -21,6 +21,10 @@ module Tumblr
       else
         Tumblr::Page.new(items, 0, items.length, params[:num])
       end
+    end
+    
+    def self.find(id)
+      paginate(:page => 1, :per_page => 1).first
     end
     
     def self.all(params={})
@@ -53,6 +57,17 @@ module Tumblr
       self.class.to_s.split("::").last.underscore
     end
 
+    def as_json
+      {
+        :id => id,
+        :slug => slug,
+        :date => date,
+        :type => type,
+        :format => format,
+        :tags => tags
+      }
+    end
+
     private
 
     def self.url(params)
@@ -73,7 +88,9 @@ module Tumblr
     end
     
     def parse_xml_node(node)
+      self.xml = node.to_s
       self.id = node['id']
+      self.type = node['type']
       self.slug = node['slug']
       self.date = Time.at(node['unix-timestamp'].to_i)
       self.format = node['format']
@@ -81,6 +98,6 @@ module Tumblr
         tag.content
       end
       self
-    end
+    end    
   end
 end

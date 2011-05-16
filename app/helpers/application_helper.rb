@@ -101,7 +101,7 @@ module ApplicationHelper
   def page_keywords
     keywords = ["jesse reiss", "the gorgon lab", "gorgon", "technology", "entrepreneurship", "blog"]
     keywords += @page_keywords if @page_keywords
-    keywords += @post.tags if @post && @post.respond_to?(:tags)
+    keywords += @post.to_tumblr.tags if @post
     keywords.uniq.join(", ")
   end
   

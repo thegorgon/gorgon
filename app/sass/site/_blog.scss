@@ -1,4 +1,74 @@
 .site_blog, .site_home {
+  .newcomment {
+    width: 300px;
+    padding: 20px;
+    form {
+      width: 315px;
+      margin: 0 auto;
+    }
+    input, textarea {
+      margin: 0.25em 0;
+      border: 1px solid #ddd;
+      background: #fff;
+      width: 289px;
+      font-size: 15px;
+      padding: 2px 5px;
+      @include border_radius(3px);
+      @include box_shadow(rgba(0,0,0,0.5) 0px 1px 1px inset);
+      &:focus {
+        outline: none;
+        @include box_shadow(none);
+        border: 1px solid #999;
+      }
+    }
+    li {
+      .star {
+        color: #999;
+        float: right;
+        margin: 5px 5px 0 0;
+      }
+    }
+    li.invalid {
+      input, textarea {
+        @include box_shadow(none);
+        border: 1px solid #d33;
+      }
+      .star {
+        color: #d33;
+      }
+    }
+    button {
+      width: 300px;
+      line-height: 15px;
+      font-size: 15px;
+      background: #fff;
+      display: block;
+      height: 30px;
+      background: #fff;
+      @include border_radius(3px);
+      border: 2px solid #ddd;
+      text-shadow: 0px 1px 0px #fff;
+      color: #666;
+      &:hover, &.hover {
+        background: #f2f2f2;
+        color: #333 !important;
+        @include box_shadow(none);
+      }
+      &:active, &.active {
+        background: #999;
+        @include box_shadow(#000 0px 1px 5px inset);        
+        color: #fff !important;
+        text-shadow: 0px -1px 0px #000;
+      }
+    }
+    input {
+      height: 26px;
+    }
+    textarea {
+      resize: none;
+      height: 100px;
+    }
+  }
   #bd {
     .post {
       width: 600px;
@@ -14,6 +84,61 @@
           text-decoration: none;
           &:hover {
             text-decoration: underline;
+          }
+        }
+      }
+      .comments {
+        width: 500px;
+        margin: 0 auto;
+        min-height: 90px;
+        position: relative;
+        .emptymessage {
+          text-align: center;
+          display: none;
+        }
+        &.loading {
+          background: transparent url(/images/loading/threebar16x11.gif) no-repeat center 60px;
+        }
+        &.empty {
+          .emptymessage {
+            display: block;
+          }
+        }
+        h2 {
+          font-weight: normal;
+          font-size: 20px;
+          text-align: center;
+          margin: 2em 0 0;
+        }
+        .comment {
+          margin: 1em auto 1.5em;
+          text-align: center;
+          padding: 5px;
+          details {
+            margin: 5px 0 0 0;
+          }
+        }
+        .addcomment {
+          width: 20px;
+          height: 20px;
+          float: right;
+          margin-right: 100px;
+          @include border_radius(5px);
+          background: #fff;
+          border: 1px solid #999;
+          text-decoration: none;
+          color: #999;
+          font-size: 25px;
+          text-align: center;
+          display: block;
+          line-height: 20px;
+          @include box_shadow(#999 0px 1px 0px);
+          position: absolute;
+          top: 1px;
+          right: 0px;
+          &:hover {
+            background: #f0f0f0;
+            @include box_shadow(none);
           }
         }
       }
