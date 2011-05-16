@@ -109,6 +109,9 @@ GEM
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
+    tumblrb (1.0.1)
+      curb (~> 0.7.15)
+      nokogiri (~> 1.4.4)
     tzinfo (0.3.27)
     will_paginate (3.0.pre2)
     yui-compressor (0.9.6)
@@ -119,7 +122,6 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano
-  curb
   haml
   jammit
   mongrel (= 1.2.0.pre2)
@@ -128,4 +130,5 @@ DEPENDENCIES
   rails (= 3.0.7)
   ruby-debug19
   sass
+  tumblrb
   will_paginate (~> 3.0.pre2)
