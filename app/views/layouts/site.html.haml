@@ -13,7 +13,7 @@
   = iphone_meta_tags
   = seo_tags
   = open_graph_tags
-  = auto_discovery_link_tag(:rss, "http://thegorgonlab.tumblr.com/rss")
+  = auto_discovery_link_tag(:rss, blog_url(:format => :xml))
   = csrf_meta_tag 
   = favicon_link_tag
   = yield :head
@@ -25,7 +25,8 @@
     %h1 the gorgon lab
     %nav
       =link_to_with_current "about", about_path, :class => "first"
-      =link_to_with_current "blog", blog_path, :class => "last"
+      =link_to_with_current "blog", blog_path
+      =link_to_with_current "twitter", "https://twitter.com/#!/jessereiss", :class => "last"
   #bd=yield
   =include_javascripts :vendor
   =include_javascripts :scripts

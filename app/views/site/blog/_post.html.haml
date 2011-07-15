@@ -1,6 +1,7 @@
 -tumblr = @post.to_tumblr
 .post
   %h1.tk-divulge.engraved= tumblr.title.downcase.html_safe
+  %h3= tumblr.date.strftime('')
   .body= tumblr.body.html_safe
   .comments{"data-src" => blog_post_comments_path(@post)}
     %h2.tk-divulge.engraved 
