@@ -1,4 +1,12 @@
 .site_blog, .site_home {
+  .pagination {
+    float: right;
+    margin: 20px;
+    a {
+      text-decoration: none;
+      padding: 0 5px;
+    }
+  }
   .newcomment {
     width: 300px;
     padding: 20px;

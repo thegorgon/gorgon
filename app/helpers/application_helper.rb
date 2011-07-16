@@ -8,6 +8,11 @@ module ApplicationHelper
     "<script type=\"text/javascript\" src=\"http://platform.twitter.com/anywhere.js?id=#{key}&v=1\"></script>".html_safe
   end
   
+  def param_path(path, add)
+    keep = params.symbolize_keys.except(:action, :controller)
+    send("#{path}_path", keep.merge(add))
+  end
+  
   def button_tag(options={}, &block)
     options[:type] ||= 'submit'
     button = "<button"

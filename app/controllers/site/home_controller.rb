@@ -8,5 +8,5 @@ class Site::HomeController < Site::BaseController
   
   def twitter
     @ext = "http://www.twitter.com/#!/jessereiss"
-  end
+  end  
 end

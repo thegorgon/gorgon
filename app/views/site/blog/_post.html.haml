@@ -1,10 +1,10 @@
 -tumblr = @post.to_tumblr
 .post
-  %h1.tk-divulge.engraved= tumblr.title.downcase.html_safe
+  %h1= tumblr.title.downcase.html_safe
   %h3= tumblr.date.strftime('')
   .body= tumblr.body.html_safe
   .comments{"data-src" => blog_post_comments_path(@post)}
-    %h2.tk-divulge.engraved 
+    %h2
       Comments
       =link_to "&#43;".html_safe, "#", :class => "addcomment", "data-popover" => "#newcommentform", "data-popover-title" => "Add Comment", "data-popover-pos" => "left,bottom", "data-popover-orient" => "vertical"
     %hr

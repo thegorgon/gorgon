@@ -1,6 +1,7 @@
 class Site::BlogController < Site::BaseController
   def index
-    @posts = Post.order("created_at DESC").paginate(:page => params[:page], :per_page => params[:per_page])
+    pagination = params.slice("page", "per_page").reverse_merge!("page" => 1).symbolize_keys
+    @posts = Post.order("created_at DESC").paginate(pagination)
   end
   
   def show

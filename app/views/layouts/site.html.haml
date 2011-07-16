@@ -21,13 +21,17 @@
   = analytics_tag 'UA-23324040-1'
 %body{:id => page_namespace, :class => "site #{controller_name}"}
   #wrap
-    %header.tk-divulge.engraved.clearfix
+    %header.engraved.clearfix
       =link_to image_tag("logos/me202x75.png", :size => '151x56'), root_path, :class => 'logo'
       %h1 the gorgon lab
-      %nav
+      %nav.special
         =link_to_with_current "about", about_path, :class => "first"
         =link_to_with_current "blog", blog_path
-        =link_to_with_current "twitter", twitter_path, :class => "last"
+        =link_to_with_current "twitter", twitter_path
+      %summary
+        %p my name is jesse reiss, and this is my website.
+        %p i like putting my ideas in the tubes.
+        %p i hope you like receiving them.
     .vr
     #content
       #bd=yield

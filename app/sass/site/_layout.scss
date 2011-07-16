@@ -13,6 +13,15 @@ header {
   height: 100%;
   color: #000;
   float: right;
+  summary {
+    font-size: 14px;
+    text-align: left;
+    margin: 30px auto;
+    text-shadow: rgba(255,255,255,1) 1px 0px 0px;
+    p {
+      margin: 10px 0;
+    }
+  }
   .logo {
     display: block;
   }
@@ -22,7 +31,7 @@ header {
   }
   nav {
     padding: 8px 0 0 0;
-    font-size: 25px;
+    font-size: 20px;
     a, a:visited {
       color: #000;
       text-decoration: none;
@@ -54,7 +63,7 @@ header {
 }
 #content {
   margin-right: 300px;
-  padding: 5px 25px 50px 25px;
+  padding: 20px 25px 50px 25px;
 }
 .center {
   margin-right: auto;
@@ -67,4 +76,8 @@ a, a:visited {
   &:hover {
     color: #000;
   }
-}    
+}  
+h1, h2, .special {
+  text-shadow: rgba(255,255,255,1) 0px 1px 0px;
+  font-family: divulge-1,divulge-2, "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}  

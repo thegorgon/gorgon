@@ -1,5 +1,7 @@
 class Post < ActiveRecord::Base  
   has_many :comments, :primary_key => :tumblr_id
+  @@per_page = 10
+  cattr_reader :per_page
   
   def self.from_tumblr(params={})
     items = Tumblr::Item.paginate(:page => params[:page], :per_page => params[:per_page])
