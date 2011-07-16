@@ -1,9 +1,14 @@
+#wrap {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
 header {
   padding: 25px;
   width: 250px;
   height: 100%;
   color: #000;
-  float: left;
+  float: right;
   .logo {
     display: block;
   }
@@ -34,17 +39,30 @@ header {
   }
   margin-bottom: 10px;
 }
-#bd {
+.vr {
+  width: 0;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #fff;
+  position: absolute;
+  right: 310px;
+  bottom: 0;
+  top: 0;
+}
+#content {
+  margin-right: 300px;
   padding: 5px 25px 50px 25px;
-  .center {
-    margin: 0 auto;
-    text-align: center;
-  }
-  a, a:visited {
-    color: #666;
-    text-decoration: underline;
-    &:hover {
-      color: #000;
+  #bd {
+    .center {
+      margin-right: auto;
+      margin-left: auto;
+      text-align: center;
     }
+    a, a:visited {
+      color: #666;
+      text-decoration: underline;
+      &:hover {
+        color: #000;
+      }
+    }    
   }
 }
