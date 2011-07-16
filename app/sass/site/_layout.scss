@@ -4,6 +4,7 @@
   position: relative;
   background: #f0f0f0;
   color: #0f0f0f;
+  min-height: 100%;
   @include box_shadow(rgba(0,0,0,0.75) 0px 0px 10px);
 }
 header {
@@ -54,18 +55,16 @@ header {
 #content {
   margin-right: 300px;
   padding: 5px 25px 50px 25px;
-  #bd {
-    .center {
-      margin-right: auto;
-      margin-left: auto;
-      text-align: center;
-    }
-    a, a:visited {
-      color: #666;
-      text-decoration: underline;
-      &:hover {
-        color: #000;
-      }
-    }    
-  }
 }
+.center {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+a, a:visited {
+  color: #666;
+  text-decoration: underline;
+  &:hover {
+    color: #000;
+  }
+}    

@@ -5,4 +5,8 @@ class Site::HomeController < Site::BaseController
   def index
     redirect_to blog_path
   end
+  
+  def twitter
+    @ext = "http://www.twitter.com/#!/jessereiss"
+  end
 end

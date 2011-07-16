@@ -4,6 +4,10 @@ module ApplicationHelper
      <script type=\"text/javascript\">try{Typekit.load();}catch(e){}</script>".html_safe
   end
   
+  def at_anywhere_tag(key)
+    "<script type=\"text/javascript\" src=\"http://platform.twitter.com/anywhere.js?id=#{key}&v=1\"></script>".html_safe
+  end
+  
   def button_tag(options={}, &block)
     options[:type] ||= 'submit'
     button = "<button"

@@ -2,7 +2,21 @@
   html, body {
     width: 320px
   }
+  .vr {
+    display: none;
+  }
+  #wrap {
+    padding: 0;
+    width: 320px;
+  }
+  #content {
+    margin: 0;
+    padding: 5px 10px 50px;
+    width: 300px;
+  }
   header {
+    margin: 0 auto;
+    float: none;
     .logo {
       width: 151px;
       margin: 0 auto;
@@ -29,20 +43,14 @@
     }
   }
   .site_home, .site_blog {
-    #bd {
-      .post {
+    .post {
+      width: 300px;
+      .comments {
         width: 300px;
-        margin: 0 auto;
-        h1 {
-          margin: 0 auto;
+        .addcomment {
+          margin-right: 50px;
         }
-        .comments {
-          width: 300px;
-          .addcomment {
-            margin-right: 50px;
-          }
-        } 
-      }
+      } 
     }
     .newcomment {
       width: 242px;
@@ -68,7 +76,21 @@
   html, body {
     width: 480px
   }
+  .vr {
+    display: none;
+  }
+  #wrap {
+    padding: 0;
+    width: 480px;
+  }
+  #content {
+    margin: 0;
+    padding: 5px 10px 50px;
+    width: 460px;
+  }
   header {
+    margin: 0 auto;
+    float: none;
     .logo {
       width: 151px;
       margin: 0 auto;
@@ -95,20 +117,14 @@
     }
   }
   .site_home, .site_blog {
-    #bd {
-      .post {
+    .post {
+      width: 460px;
+      .comments {
         width: 460px;
-        margin: 0 auto;
-        h1 {
-          margin: 0 auto;
+        .addcomment {
+          margin-right: 50px;
         }
-        .comments {
-          width: 460px;
-          .addcomment {
-            margin-right: 50px;
-          }
-        } 
-      }
+      } 
     }
   }
 }

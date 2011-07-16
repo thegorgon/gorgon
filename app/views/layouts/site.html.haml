@@ -27,9 +27,11 @@
       %nav
         =link_to_with_current "about", about_path, :class => "first"
         =link_to_with_current "blog", blog_path
-        =link_to_with_current "twitter", "https://twitter.com/#!/jessereiss", :class => "last"
+        =link_to_with_current "twitter", twitter_path, :class => "last"
     .vr
     #content
       #bd=yield
   =include_javascripts :vendor
   =include_javascripts :scripts
+  %script{:src => "http://platform.twitter.com/widgets.js"}
+  

@@ -6,6 +6,12 @@ window.Gorgon = window.Gorgon || {};
       object[name] = object[name] || {};
       $.extend(object[name], features);
       return object;
+    },
+    twitterify: function(text) {
+      text = text.replace(/(http:\/\/[\.\w\/]+)/gi, "<a href='$1' target='_blank'>$1</a>");
+      text = text.replace(/\@(\w+)/gi, "<a href='http://www.twitter.com/#!/$1' target='_blank'>@$1</a>");
+      text = text.replace(/\#(\w+)/gi, "<a href='https://twitter.com/#!/search?q=%23$1' target='_blank'>#$1</a>");
+      return text;
     }
   });
   
@@ -33,7 +39,6 @@ window.Gorgon = window.Gorgon || {};
 $(document).ready(function() {
   $.popover.init();
   $.popover.bind();
-  $.logger.debug($('.popover .cancel'));
   $('.popover a.cancel').live('click', function(e) {
     e.preventDefault();
     $.popover.hide();

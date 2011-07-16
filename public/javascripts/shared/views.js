@@ -48,6 +48,17 @@
           }
         }
       });
+    },
+    site_home_twitter: function() {
+      var handle = "jessereiss",
+        url = "http://twitter.com/status/user_timeline/"+handle+".json?callback=?"
+      
+      $.getJSON(url, {count: 50}, function(data) { 
+        var user = data[0].user;
+        $.logger.debug(data);
+        $('.profoto').html($('<img></img>').attr('src', user.profile_image_url));
+        $('#timeline').append($( "#tweetTpl" ).tmpl( data )).removeClass('loading');
+      });
     }
   });
 }(Gorgon));

@@ -2,6 +2,7 @@ Gorgon::Application.routes.draw do
   scope :module => "site" do
     controller 'home' do
       get 'about', :action => 'about'
+      get 'twitter', :action => 'twitter'
     end
     controller 'blog' do
       get 'blog', :action => 'index'

@@ -20,3 +20,69 @@
     margin-top: 30px;
   }
 }
+#site_home_twitter {
+  #timeline {
+    clear: left;
+    background: #fff;
+    border: 1px solid #ddd;
+    @include border_radius(5px);
+    min-height: 100px;
+    &.loading {
+      background: #fff url(/images/loading/threebarwhite16x11.gif) no-repeat center center;
+    }
+  }
+  .more {
+    text-align: right;
+    margin: 10px 5px;
+  }
+  #header {
+    margin: 20px 5px;
+    a {
+      text-decoration: none;
+    }
+    .follow {
+      float: right;
+      margin: 13px 0px;
+    }
+    .profoto {
+      display: inline-block;
+      height: 48px;
+      width: 48px;
+      float: left;
+      line-height: 48px;
+      margin-bottom: 20px;
+      &.loading {
+        height: 46px;
+        width: 46px;
+        border: 1px solid #ddd;
+        background: #fff url(/images/loading/threebarwhite16x11.gif) no-repeat center center;
+      }
+    }
+    .handle {
+      float: left;
+      display: block;
+      height: 48px;
+      margin-left: 10px;
+      line-height: 48px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+  }
+  .tweet {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #555;
+    a {
+      text-decoration: none !important;
+      color: #9999aa !important;
+    }
+    &:last-child {
+      border-bottom: 0;
+    }
+    time {
+      float: right;
+      color: #ddd;
+      font-size: 11px;
+    }
+  }
+}
