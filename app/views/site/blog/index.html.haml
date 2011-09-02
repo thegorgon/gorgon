@@ -1,15 +1,8 @@
 -@posts.each_with_index do |post, i|
-  -tumblr = post.to_tumblr
-  .post{:class => first_or_last(i, @posts)}
-    %h1
-      =link_to tumblr.title.downcase.html_safe, blog_post_path(post)
-    .preview= blog_post_preview(tumblr)
-    %hr
-    .link.center
-      =link_to "full article", blog_post_path(post)
-
+  =render :partial => "post", :object => post
+  
 .pagination.clearfix
   -if @posts.previous_page
-    =link_to "<&nbsp;&nbsp;newer".html_safe, param_path("blog", :page => @posts.previous_page)
+    =link_to "<&nbsp;&nbsp;Newer Entries".html_safe, param_path("blog", :page => @posts.previous_page)
   -if @posts.next_page
-    =link_to "older&nbsp;&nbsp;>".html_safe, param_path("blog", :page => @posts.next_page)
+    =link_to "Older Entries&nbsp;&nbsp;>".html_safe, param_path("blog", :page => @posts.next_page)

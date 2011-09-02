@@ -17,38 +17,6 @@
     },
     layout: function(url) {
     },
-    site_blog_show: function() {
-      var comments = $('.comments'),
-        list = comments.find('ul');
-      comments.addClass('loading');
-      $.get(comments.attr('data-src'), function(data) {
-        comments.removeClass('loading');
-        if (data.comments.length == 0) {
-          comments.addClass('empty');
-        }
-        $.each(data.comments, function(i) {
-          $('#commenttpl').tmpl(data.comments[i]).appendTo(list);
-        })
-      });
-      $('#newcommentform form').ajaxForm({
-        start: function() {
-          if ($(this).validate()) {
-            var params = $(this).serializeObject("comment");
-            params.created_at = new Date();
-            comments.removeClass('empty');
-            $('#commenttpl').tmpl(params).addClass('pending').appendTo(list);
-            $.popover.hide();
-          } else {
-            return false;
-          }
-        }, success: function(data) {
-          if (data.success) {
-            $(this).clear();
-            list.find('.pending').replaceWith(data.html);            
-          }
-        }
-      });
-    },
     site_home_twitter: function() {
       var handle = "jessereiss",
         url = "http://twitter.com/status/user_timeline/"+handle+".json?callback=?"

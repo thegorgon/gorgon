@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base  
   has_many :comments, :primary_key => :tumblr_id
-  @@per_page = 10
+  @@per_page = 3
   cattr_reader :per_page
   
   def self.from_tumblr(params={})

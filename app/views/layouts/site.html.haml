@@ -32,10 +32,20 @@
         %p my name is jesse reiss, and this is my website.
         %p i like putting my ideas in the tubes.
         %p i hope you like receiving them.
+      .social
+      
     .vr
     #content
       #bd=yield
+  #fb-root
   =include_javascripts :vendor
   =include_javascripts :scripts
+  %script{:type => "text/javascript", :src => "http://platform.twitter.com/widgets.js"}
+  :javascript
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
   %script{:src => "http://platform.twitter.com/widgets.js"}
   
