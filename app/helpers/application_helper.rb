@@ -139,6 +139,7 @@ module ApplicationHelper
     tags << meta_property("og:title", page_title)
     tags << meta_property("og:description", page_description)
     tags << meta_property("og:url", "#{request.url}")
+    tags << meta_property("fb:admins", "100000043724571")
     tags << meta_property("og:site_name", "the gorgon lab")
     tags.join("\n").html_safe
   end
