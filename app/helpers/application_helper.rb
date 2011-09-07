@@ -100,8 +100,8 @@ module ApplicationHelper
     default = "the gorgon lab - rants and ravings from the mind of jesse reiss"
     if @page_title
       @page_title
-    elsif @post && @post.respond_to?(:title)
-      "#{@post.title} - #{default}"
+    elsif @post && @post.respond_to?(:to_tumblr)
+      "#{@post.to_tumblr.title} - #{default}"
     else
       default
     end
@@ -110,17 +110,17 @@ module ApplicationHelper
   def page_keywords
     keywords = ["jesse reiss", "the gorgon lab", "gorgon", "technology", "entrepreneurship", "blog"]
     keywords += @page_keywords if @page_keywords
-    keywords += @post.to_tumblr.tags if @post
+    keywords += @post.to_tumblr.tags if @post && @post.respond_to?(:to_tumblr)
     keywords.uniq.join(", ")
   end
   
   def page_description
     if @page_description
       @page_description
-    elsif @post && @post.respond_to?(:body)
-      "#{truncate_string(remove_tags(@post.body), 200).strip}..."
+    elsif @post && @post.respond_to?(:to_tumblr)
+      "#{truncate_string(remove_tags(@post.to_tumblr.body), 200).strip}..."
     else
-      "the gorgon lab is the personal website and blog  of jesse reiss. topics include technology, entrepreneurship, food, philosophy, and san francsico."
+      "the gorgon lab is the personal website and blog of jesse reiss. topics include technology, entrepreneurship, food, philosophy, and san francsico."
     end
   end
   
@@ -135,7 +135,8 @@ module ApplicationHelper
   
   def open_graph_tags
     tags = []
-    tags << meta_property("og:image", "http://www.thegorgonlab.com/images/logos/me202x75.png")
+    tags << meta_property("og:image", "http://www.thegorgonlab.com/images/logos/me300x300.png")
+    tags << meta_property("og:type", "blog")
     tags << meta_property("og:title", page_title)
     tags << meta_property("og:description", page_description)
     tags << meta_property("og:url", "#{request.url}")
