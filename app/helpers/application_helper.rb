@@ -62,7 +62,7 @@ module ApplicationHelper
   end
 
   def remove_tags(text)
-    text.gsub(/\<[^\>]+\>(.*?)(<\/p\>)?/, '\1')
+    text.gsub(/\<[^\>]+\>(.*?)(<\/p\>)?/, '\1').gsub(/&(#\d+|\w+);/, '')
   end
 
   def blog_post_preview(post)
