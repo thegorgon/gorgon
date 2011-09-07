@@ -80,5 +80,5 @@ a, a:visited {
 }  
 h1, h2, .special {
   text-shadow: rgba(255,255,255,1) 0px 1px 0px;
-  font-family: divulge-1,divulge-2, "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  @include tf;
 }  

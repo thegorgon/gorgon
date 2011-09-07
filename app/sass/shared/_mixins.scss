@@ -155,3 +155,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);   /* IE6 & 7 */
   zoom: 1;
 }
+
+@mixin tf {
+  font-family: divulge-1, divulge-2, "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}

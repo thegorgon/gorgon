@@ -28,12 +28,11 @@
         =link_to_with_current "about", about_path, :class => "first"
         =link_to_with_current "blog", blog_path
         =link_to_with_current "twitter", twitter_path
+        =link_to_with_current "rss", blog_path(:format => :xml)
       %summary
         %p my name is jesse reiss, and this is my website.
         %p i like putting my ideas in the tubes.
         %p i hope you like receiving them.
-      .social
-      
     .vr
     #content
       #bd=yield

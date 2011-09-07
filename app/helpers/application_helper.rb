@@ -133,6 +133,10 @@ module ApplicationHelper
     meta_name("viewport", "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
   end
   
+  def img_link_to(src, url, options={})
+    link_to image_tag(src, options.slice(:size, :width, :height, :border, :alt)), url, options.except(:size, :width, :height, :border, :alt)
+  end
+  
   def open_graph_tags
     tags = []
     tags << meta_property("og:image", "http://www.thegorgonlab.com/images/logos/me300x300.png")

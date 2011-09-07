@@ -1,7 +1,7 @@
 .site_blog, .site_home {
   .pagination {
+    @include tf;
     font-size: 20px;
-    font-family: divulge-1, divulge-2, "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     float: right;
     margin: 20px;
     a {
