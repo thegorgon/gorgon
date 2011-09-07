@@ -62,7 +62,7 @@ module ApplicationHelper
   end
 
   def remove_tags(text)
-    text.gsub(/\<[^\>]+\>(.*?)(<\/p\>)?/, '\1').gsub(/&(#\d+|\w+);/, '')
+    text.gsub(/\<[^\>]+\>(.*?)(<\/p\>)?/, '\1')
   end
 
   def blog_post_preview(post)
@@ -101,7 +101,7 @@ module ApplicationHelper
     if @page_title
       @page_title
     elsif @post && @post.respond_to?(:to_tumblr)
-      "#{@post.to_tumblr.title} - #{default}"
+      "#{remove_tags(@post.to_tumblr.title)} - #{default}".html_safe
     else
       default
     end
@@ -118,7 +118,7 @@ module ApplicationHelper
     if @page_description
       @page_description
     elsif @post && @post.respond_to?(:to_tumblr)
-      "#{truncate_string(remove_tags(@post.to_tumblr.body), 200).strip}..."
+      "#{(truncate_string(remove_tags(@post.to_tumblr.body), 200).strip)}...".html_safe
     else
       "the gorgon lab is the personal website and blog of jesse reiss. topics include technology, entrepreneurship, food, philosophy, and san francsico."
     end
