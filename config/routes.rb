@@ -1,5 +1,6 @@
 Gorgon::Application.routes.draw do
   scope :module => "site" do
+    resources :projects, :only => [:show, :index]
     controller 'home' do
       get 'about', :action => 'about'
       get 'twitter', :action => 'twitter'

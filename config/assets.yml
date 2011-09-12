@@ -3,6 +3,9 @@ embed_assets: off
 javascript_compressor: closure
 
 javascripts:
+  simulations: 
+    - public/javascripts/simulations/physics.js
+    - public/javascripts/simulations/animation.js
   vendor:
     - public/javascripts/vendor/jquery-1.6.min.js
     - public/javascripts/vendor/jquery.logger.js
