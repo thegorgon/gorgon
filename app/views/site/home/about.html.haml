@@ -1,13 +1,14 @@
-.center=image_tag 'logos/bernini100x126.png', :size => '100x126'
-%h1 about the lab
+#img=image_tag 'logos/bernini100x126.png', :size => '100x126'
+.body
+  %h1 about the lab
 
-%p.center
-  my name is jesse reiss, and this is my website.
-%p.center
-  ="i am a software engineer, amateur designer, and technology enthusiast living and working in san francisco. i am currently working on #{link_to 'spot', 'http://www.spot-app.com/'}, an iphone app for urbanites.".html_safe
-%p.center
-  i spend most of my time enjoying san francisco, controlling computers with my fingers, cooking delicious food, and experimenting with mixology.
-%p.center
-  ="if you'd like to contact me, you can #{mail_to "jessereiss@gmail.com", "email me", :encode => "javascript"} or find me #{link_to "on twitter", "http://www.twitter.com/jessereiss"}.".html_safe
-%p.center
-  ="if you're curious about the origin of the site name, #{link_to "read my intro post", blog_post_path('welcome-to-the-gorgon-lab')}.".html_safe
+  %p
+    my name is jesse reiss, and this is my website.
+  %p
+    ="i am a software engineer, amateur designer, and technology enthusiast living and working in san francisco. i am currently working on #{link_to 'spot', 'http://www.spot-app.com/'}, an iphone app for urbanites.".html_safe
+  %p
+    i spend most of my time enjoying san francisco, controlling computers with my fingers, cooking delicious food, and experimenting with mixology.
+  %p
+    ="if you'd like to contact me, you can #{mail_to "jessereiss@gmail.com", "email me", :encode => "javascript"} or find me #{link_to "on twitter", "http://www.twitter.com/jessereiss"}.".html_safe
+  %p
+    ="if you're curious about the origin of the site name, #{link_to "read my intro post", blog_post_path('welcome-to-the-gorgon-lab')}.".html_safe

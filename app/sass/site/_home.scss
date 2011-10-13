@@ -1,25 +1,118 @@
 #site_home_about {
   #bd {
-    width: 500px;
-    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 1.2em;
     line-height: 1.4em;
     p {
+      text-align: left;
       margin: 1em 0;
     }
     h1 {
       font-weight: normal;
-      text-align: center;
       font-size: 30px;
       margin: 0.5em auto 1em;
     }
   }
 }
-#site_home_index {
-  .bernini {
-    margin-top: 30px;
+@media screen and (min-width: 1000px) {
+  #site_home_about {
+    #img {
+      float: left;
+    }
+    .body {
+      margin-left: 150px;
+    }
   }
 }
+#site_home_index {
+  #title {
+    @include tf;
+  }
+  #page {
+    padding: 0;
+    text-align: center;
+  }
+  nav.int {
+    @include tf;
+    margin: 30px 0;
+    font-size: 18px;
+    a, a:visited {
+      color: #000;
+      text-decoration: none;
+      padding: 2px 5px;
+      &.first {
+        padding-left: 0;
+      }
+      &:hover {
+        text-shadow: none;
+        border-bottom: 1px solid #333;
+      }
+      &.active, &:active {
+        border-bottom: 1px solid #333;
+      }
+    }
+  }
+  nav.ext {
+    margin: 20px 0 0 0;
+  }
+  #bd {
+    padding: 0;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+  }
+  #bio {
+    margin: 50px 0 20px;
+    font-size: 20px;
+    @include tf;
+    p {
+      margin: 0 0;
+    }
+  }
+  #wrapper {
+    height: 100%;
+    width: 320px; /* Optimally 786px */
+    margin: 20px auto;
+  }
+  #me {
+    height: 300px;
+    width: 300px;
+    background: transparent url(/images/logos/me300x300.png) no-repeat center center;
+  }
+}
+@media screen and (min-width: 650px) {
+  #site_home_index {
+    #wrapper {
+      width: 665px;
+      margin: 0 auto;
+      padding: 5px;
+      display: table;
+    }
+    #intro {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    #me {
+      float: left;
+      padding-right: 25px;
+      margin-right: 25px;
+      border-right: 1px solid #fff;
+    }
+    #bio {
+      margin: 0;
+      padding-top: 50px;
+    }
+    #bio, nav {
+      text-align: left;
+    }
+  }
+} 
 #site_home_twitter {
   #timeline {
     clear: left;
@@ -36,7 +129,7 @@
     margin: 10px 5px;
   }
   #header {
-    margin: 0px 5px;
+    margin: 10px 5px 0px;
     a {
       text-decoration: none;
     }

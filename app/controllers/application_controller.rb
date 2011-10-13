@@ -19,6 +19,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :controller_name
   
+  def module_names
+    @module_names ||= params[:controller].split('/').reverse.drop(1).join(" ")
+  end
+  helper_method :module_names
+  
   def log_error(exception)
     message = "\n#{exception.class} (#{exception.message}):\n"
     message << exception.annoted_source_code.to_s if exception.respond_to?(:annoted_source_code)
@@ -28,7 +33,7 @@ class ApplicationController < ActionController::Base
 
   def render_error(exception)
     handle_error(exception)
-    render :template => "/site/errors/500.html.haml", :status => 500, :layout => "site"
+    render :template => "/site/errors/500.html.haml", :status => 500, :layout => "twocol"
   end
   
   def clean_backtrace(exception, *args)
@@ -37,7 +42,7 @@ class ApplicationController < ActionController::Base
   
   def render_404(exception=nil)
     handle_error(exception)
-    render :template => "/site/errors/404.html.haml", :status => 404, :layout => "site"
+    render :template => "/site/errors/404.html.haml", :status => 404, :layout => "twocol"
   end
   
   def handle_error(exception=nil)

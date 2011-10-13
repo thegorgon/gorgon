@@ -1,25 +1,27 @@
 -tumblr = post.to_tumblr
 -host = "www.thegorgonlab.com"
 -show_comments ||= false
-.post
-  %h1= tumblr.title.downcase.html_safe
-  %h3= tumblr.date.strftime('')
+-first_or_last ||= false
+
+.post{:class => first_or_last}
+  %h1=link_to tumblr.title.downcase.html_safe, blog_post_url(post)
   .body= tumblr.body.html_safe
     
   .social.clearfix
     -unless show_comments
-      %a.comment_count.left{:href => blog_post_url(post)}
+      %a.comment_count.share{:href => blog_post_url(post)}
         %span.count="<fb:comments-count href=\"#{blog_post_url(post)}\"/>0</fb:comments-count>".html_safe 
-        comments
-    .twits.left
-      %a{:href => "http://twitter.com/share", :class => "twitter-share-button", "data-url" => blog_post_url(post, :host => host), "data-count" => "horizontal"} Tweet
-    .gplus.left
-      %g:plusone{:size => "medium", :href => blog_post_url(post, :host => host, :host => host)}
+    .twits.share
+      %a{:href => "http://twitter.com/share", :class => "twitter-share-button", "data-url" => blog_post_url(post, :host => host), "data-count" => "none"} Tweet
+    .gplus.share
+      %g:plusone{:size => "medium", :href => blog_post_url(post, :host => host, :host => host), :annotation => "none"}
 
-    .face.left
+    .face.share.last
       %fb:like{:href => blog_post_url(post, :host => host), :send => "true", :layout => "button_count", :show_faces => "false", :font => "lucida grande"}
 
   -if show_comments
     %a{:name => "comments"}
-    .comments
-      %fb:comments{:href => blog_post_url(post, :host => host), :num_posts => "10", :width => "600"}
+    .comments.wide
+      %fb:comments{:href => blog_post_url(post, :host => host), :num_posts => "10", :width => "650"}
+    .comments.narrow
+      %fb:comments{:href => blog_post_url(post, :host => host), :num_posts => "10", :width => "300"}

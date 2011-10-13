@@ -1,11 +1,12 @@
-%h1.tf Moon Simulation
+#moon_simulation
+  %h1.tf Moon Simulation
 
-%canvas.centered{:id => "simulation", :width => 600, :height => 500}
-.clearfix.clear
-  =link_to "Stop", "#", :id => "stop_simulation"
-  =link_to "Start", "#", :id => "start_simulation"
-  =link_to "Restart", "#", :id => "restart_simulation"
+  %canvas.centered{:id => "simulation", :width => 600, :height => 500}
+  .clearfix.controls.clear
+    =img_link_to "simulations/controls/play.png", "#", :id => "start_simulation", :alt => ""
+    =img_link_to "simulations/controls/pause.png", "#", :id => "stop_simulation", :alt => ""
+    =img_link_to "simulations/controls/restart.png", "#", :id => "restart_simulation", :alt => ""
 
-=content_for :bottom do
-  =include_javascripts :simulations
+  =content_for :bottom do
+    =include_javascripts :simulations
   

@@ -3,7 +3,7 @@ class Site::HomeController < Site::BaseController
   end
   
   def index
-    redirect_to blog_path
+    render :layout => "application"
   end
   
   def twitter

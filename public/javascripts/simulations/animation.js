@@ -30,7 +30,9 @@ var Animation = function(canvas) {
     this.moon.move(0.1);
   };
   this.start = function() {
-    this.interval = setInterval(loop, step);
+    if (!this.interval) {
+      this.interval = setInterval(loop, step);      
+    }
   };
   this.restart = function() {
     this.stop();
@@ -39,16 +41,26 @@ var Animation = function(canvas) {
   };
   this.stop = function() {
     clearInterval(this.interval);
+    this.interval = null;
   };
   this.clear = function() {
     this.ctx.clearRect(0, 0, this.width, this.height);
   };
   this.init = function() {
-    var moonImg = new Image(), earthImg = new Image(), bgImage = new Image(), self = this;
+    var moonImg = new Image(), 
+      earthImg = new Image(), 
+      bgImage = new Image(), 
+      self = this,
+      km = 0.00061667488899852,
+      kg = 1,
+      s = 1,
+      gC = 6.67300 * Math.pow(10, -20) * (km * km * km)/(kg * s * s),
+      moonStartPos = new Physics.Vector(this.width * 0.5, 0),
+      moonStartVel = new Physics.Vector(1.076 * km, 0);
     this.clear();
-    this.earth = new Planet({mass: 20, radius: 20, position: center});
-    this.moon = new Planet({mass: 10, radius: 10, position: new Physics.Vector(this.width * 0.5, 15), velocity: new Physics.Vector(20, 0)});
-    this.moon.mass.setField(Physics.Gravity(this.earth.mass.getPos(), 10 * this.earth.mass.mass));
+    this.earth = new Planet({mass: 5.9736 * Math.pow(10,24) * kg, radius: 6378.1 * km, position: center});
+    this.moon = new Planet({mass: 0.07349 * Math.pow(10,24) * kg, radius: 1738.1 * km, position: moonStartPos, velocity: moonStartVel});
+    this.moon.mass.setField(Physics.Gravity(this.earth.mass.getPos(), gC * this.earth.mass.mass));
     bgImage.onload = function() {
       self.background = bgImage;
     };

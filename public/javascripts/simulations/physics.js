@@ -62,6 +62,12 @@ var Physics = (function() {
     length: function() {
       return Math.sqrt(this.x * this.x + this.y * this.y);
     },
+    setLength: function(len) {
+      var theta = this.getTheta();
+      this.x = len * Math.cos(theta);
+      this.y = len * Math.sin(theta);
+      return this;
+    },
     scale: function(scaleFactor) {
       this.x *= scaleFactor;
       this.y *= scaleFactor;
@@ -222,8 +228,7 @@ var Physics = (function() {
           force.set(origin);
           force.sub(particle.getPos());
           rSq = force.dotProd(force);
-          force.normalize();
-          force.scale(strength * 10000/rSq);
+          force.setLength((strength * particle.mass)/rSq);
         }
         return force;
       });

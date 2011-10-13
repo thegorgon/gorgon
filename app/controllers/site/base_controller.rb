@@ -1,3 +1,3 @@
 class Site::BaseController < ApplicationController
-  layout 'site'
+  layout 'twocol'
 end

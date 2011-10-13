@@ -16,6 +16,10 @@
       }
     },
     layout: function(url) {
+      $.stretcher.init();
+    },
+    site_blog: function() {
+      // $('.post .body').columnize({width: 300, lastNeverTallest: true});
     },
     site_home_twitter: function() {
       var handle = "jessereiss",
