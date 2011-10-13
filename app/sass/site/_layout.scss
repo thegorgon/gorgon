@@ -9,6 +9,9 @@
   @include box_shadow(rgba(0,0,0,0.75) 0px 0px 10px);
   z-index: 2;
 }
+body {
+  background: #000;
+}
 #bg {
   background: #000;
   position: absolute;
