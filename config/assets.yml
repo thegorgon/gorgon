@@ -12,7 +12,6 @@ javascripts:
     - public/javascripts/vendor/jquery.ajax.js
     - public/javascripts/vendor/jquery.tmpl.js
     - public/javascripts/vendor/jquery.timeago.js
-    - public/javascripts/vendor/jquery.autocolumn.js
     - public/javascripts/vendor/jquery.stretcher.js
   scripts:
     - public/javascripts/shared/jquery.validate.js
