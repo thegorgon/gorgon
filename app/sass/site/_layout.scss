@@ -9,7 +9,7 @@
   @include box_shadow(rgba(0,0,0,0.75) 0px 0px 10px);
   z-index: 2;
 }
-body {
+body, html {
   background: #000;
 }
 #bg {
