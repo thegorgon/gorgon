@@ -58,13 +58,9 @@
   }
   #bd {
     padding: 0;
-    position: absolute;
     z-index: 2;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100%;
+    position: relative;
+    min-height: 100%;
     width: 100%;
   }
   #bio {
@@ -75,10 +71,12 @@
       margin: 0 0;
     }
   }
+  #intro {
+    padding: 30px 0;
+  }
   #wrapper {
     height: 100%;
     width: 320px; /* Optimally 786px */
-    margin: 20px auto;
   }
   #me {
     height: 300px;
@@ -95,6 +93,7 @@
       display: table;
     }
     #intro {
+      padding: 0;
       display: table-cell;
       vertical-align: middle;
     }
@@ -113,6 +112,19 @@
     }
   }
 } 
+
+@media screen and (min-width: 650px) and (min-device-height: 310px) {
+  #site_home_index {
+    #bd {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+}
 #site_home_twitter {
   #timeline {
     clear: left;
