@@ -1,0 +1,36 @@
+!!! 5
+-ie_html :class => 'no-js', :lang => 'en', "xmlns:fb" => "http://ogp.me/ns/fb#" do
+  %head
+    %meta{'charset' => 'utf-8'}
+    %title= page_title
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    %meta{'http-equiv' => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
+    = seo_tags
+    = auto_discovery_link_tag('/blog.xml')
+    = favicon_link_tag 'favicon.ico'
+    = open_graph_tags
+    = iphone_meta_tags
+    = include_stylesheets "site.css"
+    = analytics_tag 'UA-23324040-1'
+    = typekit_tag 'sya8ocg'
+  %body{:id => page_namespace, :class => page_classes}
+    #bg
+      .stretcher{'data-gravity' => "0.5x0.5"}
+        =image_tag "backgrounds/elephants.jpg"
+    #page.clearfix
+      -if show_header?
+        %header.clearfix=haml :_header, :layout => false
+        .rule 
+      
+      #bd= yield
+    
+    #fb-root
+    = include_javascripts "vendor.js"
+    = include_javascripts "scripts.js"
+    %script{:type => "text/javascript", :src => "http://platform.twitter.com/widgets.js"}
+    :javascript
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();

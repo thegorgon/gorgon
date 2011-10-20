@@ -1,0 +1,196 @@
+@import "../shared/_mixins";
+
+#site_home_about {
+  #bd {
+    padding-top: 20px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    line-height: 1.4em;
+    p {
+      text-align: left;
+      margin: 1em 0;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 30px;
+      margin: 0.5em auto 1em;
+    }
+  }
+}
+@media screen and (min-width: 1000px) {
+  #site_home_about {
+    #img {
+      float: left;
+    }
+    .body {
+      margin-left: 150px;
+    }
+  }
+}
+#site_home_index {
+  #title {
+    @include tf;
+  }
+  #page {
+    padding: 0;
+    text-align: center;
+  }
+  nav.int {
+    @include tf;
+    margin: 30px 0;
+    font-size: 18px;
+    a, a:visited {
+      color: #000;
+      text-decoration: none;
+      padding: 2px 5px;
+      &.first {
+        padding-left: 0;
+      }
+      &:hover {
+        text-shadow: none;
+        border-bottom: 1px solid #333;
+      }
+      &.active, &:active {
+        border-bottom: 1px solid #333;
+      }
+    }
+  }
+  nav.ext {
+    margin: 20px 0 0 0;
+  }
+  #bd {
+    padding: 0;
+    z-index: 2;
+    position: relative;
+    min-height: 100%;
+    width: 100%;
+  }
+  #bio {
+    margin: 50px 0 20px;
+    font-size: 20px;
+    @include tf;
+    p {
+      margin: 0 0;
+    }
+  }
+  #intro {
+    padding: 30px 0;
+  }
+  #wrapper {
+    height: 100%;
+    width: 320px; /* Optimally 786px */
+    margin: 0 auto;
+  }
+  #me {
+    height: 300px;
+    width: 300px;
+    background: transparent url(<%= asset_path 'logos/me300x300.png' %>) no-repeat center center;
+  }
+}
+@media screen and (min-width: 650px) {
+  #site_home_index {
+    #wrapper {
+      width: 665px;
+      margin: 0 auto;
+      padding: 5px;
+      display: table;
+    }
+    #intro {
+      padding: 0;
+      display: table-cell;
+      vertical-align: middle;
+    }
+    #me {
+      float: left;
+      padding-right: 25px;
+      margin-right: 25px;
+      border-right: 1px solid #fff;
+    }
+    #bio {
+      margin: 0;
+      padding-top: 50px;
+    }
+    #bio, nav {
+      text-align: left;
+    }
+  }
+} 
+
+@media screen and (min-width: 650px) and (min-device-height: 310px) {
+  #site_home_index {
+    #bd {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+}
+#site_home_twitter {
+  #timeline {
+    clear: left;
+    background: #fff;
+    border: 1px solid #ddd;
+    @include border_radius(5px);
+    min-height: 100px;
+    &.loading {
+      background: #fff url(<%= asset_path "loading/threebarwhite16x11.gif" %>) no-repeat center center;
+    }
+  }
+  .more {
+    text-align: right;
+    margin: 10px 5px;
+  }
+  #header {
+    margin: 10px 5px 0px;
+    a {
+      text-decoration: none;
+    }
+    .follow {
+      float: right;
+      margin: 13px 0px;
+    }
+    .profoto {
+      display: inline-block;
+      height: 48px;
+      width: 48px;
+      float: left;
+      line-height: 48px;
+      margin-bottom: 20px;
+      &.loading {
+        height: 46px;
+        width: 46px;
+        border: 1px solid #ddd;
+        background: #fff url(<%= asset_path "loading/threebarwhite16x11.gif" %>) no-repeat center center;
+      }
+    }
+    .handle {
+      float: left;
+      display: block;
+      height: 48px;
+      margin-left: 10px;
+      line-height: 48px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+  }
+  .tweet {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #555;
+    a {
+      text-decoration: none !important;
+      color: #9999aa !important;
+    }
+    &:last-child {
+      border-bottom: 0;
+    }
+    time {
+      float: right;
+      color: #ddd;
+      font-size: 11px;
+    }
+  }
+}

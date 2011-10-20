@@ -1,0 +1,29 @@
+-tumblr = post.to_tumblr
+-host = "www.thegorgonlab.com"
+-show_comments ||= false
+-first_or_last ||= false
+
+.post{:class => first_or_last}
+  %h1=link_to tumblr.title.downcase, url("/blog/#{post.to_param}")
+  .body= tumblr.body
+    
+  .social.clearfix
+    -unless show_comments
+      %a.comment_count.share{:href => url("/blog/#{post.to_param}")}
+        %span.count="<fb:comments-count href=\"#{url("/blog/#{post.to_param}")}\"/>0</fb:comments-count>" 
+    .twits.share
+      %a{:href => "http://twitter.com/share", :class => "twitter-share-button", :data => {:url => url("/blog/#{post.to_param}", :host => host), :count => "none"}} Tweet
+    .gplus.share
+      %g:plusone{:size => "medium", :href => url("/blog/#{post.to_param}", :host => host), :annotation => "none"}
+
+    .face.share.last
+      %fb:like{:href => url("/blog/#{post.to_param}", :host => host), :send => "true", :layout => "button_count", :show_faces => "false", :font => "lucida grande"}
+
+  -if show_comments
+    %a{:name => "comments"}
+    .comments.wide
+      %fb:comments{:href => url("/blog/#{post.to_param}", :host => host), :num_posts => "10", :width => "650"}
+    .comments.midWidth
+      %fb:comments{:href => url("/blog/#{post.to_param}", :host => host), :num_posts => "10", :width => "460"}    
+    .comments.narrow
+      %fb:comments{:href => url("/blog/#{post.to_param}", :host => host), :num_posts => "10", :width => "300"}

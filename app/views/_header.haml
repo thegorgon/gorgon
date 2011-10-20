@@ -1,0 +1,16 @@
+=link_to image_tag("logos/me202x75.png", :size => '151x56'), '/', :class => 'logo'
+%h1 the gorgon lab
+%nav.int
+  =link_to_with_current "about", '/about', :class => "first"
+  =link_to_with_current "blog", '/blog'
+  =link_to_with_current "projects", '/projects'
+%summary
+  %p my name is jesse reiss, and this is my website.
+  %p i like putting my ideas in the tubes.
+  %p i hope you like receiving them.
+%nav.ext
+  =img_link_to "logos/external/twitter-32x32.png", "http://twitter.com/jessereiss", :size => "32x32", :alt => "twiiter", :target => "_new"
+  =img_link_to "logos/external/aboutme-32x32.png", "http://about.me/jessereiss", :class => "first", :size => "32x32", :alt => "about.me", :target => "_new"
+  =img_link_to "logos/external/linkedin-32x32.png", "http://www.linkedin.com/in/jessereiss", :size => "32x32", :alt => "linkedin", :target => "_new"
+  =img_link_to "logos/external/github-32x32.png", "https://github.com/thegorgon", :size => "32x32", :alt => "github", :target => "_new"
+  =img_link_to "logos/external/stackoverflow-32x32.png", "http://stackoverflow.com/users/654332/jesse-reiss", :size => "32x32", :alt => "stackoverflow", :target => "_new"

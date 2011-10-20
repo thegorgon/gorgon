@@ -1,0 +1,13 @@
+#header
+  =link_to "&nbsp;", @ext, :class => "profoto loading"
+  =link_to "@jessereiss", @ext, :class => "handle"
+  .follow
+    =link_to "Follow Me", @ext, :class => "twitter-follow-button", :data => {'show-count' => "false", :width => "62px", :button => "grey", "text-color" => "#AAAAAA"}
+#timeline.loading
+.more
+  =link_to "older tweets >", @ext
+%script{:id => "tweetTpl", :type => "text/x-jquery-tmpl"}
+  .tweet
+    .profile
+    %time ${jQuery.timeago(created_at)}
+    .text {{html jQuery.twitterify(text)}}

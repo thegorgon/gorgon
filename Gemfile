@@ -1,16 +1,25 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'json'
+gem 'rack' , '1.3.3'
+gem 'sinatra'
 gem 'capistrano'
 gem 'haml'
 gem 'sass'
-gem 'jammit'
+gem 'sprockets', '~> 2.0'
 gem 'mysql2', '0.2.7'
-gem 'will_paginate', "~> 3.0.pre2"
-gem 'tumblrb', :require => "tumblr"
+gem 'redis-objects'
+gem 'tumblrb', :require => "tumblr", :path => "/Users/jreiss/Projects/ruby/gems/tumblrb"
 gem 'nokogiri'
+gem 'builder'
+gem 'uglifier'
+gem 'closure-compiler'
+gem 'yui-compressor', :require => "yui/compressor"
+gem 'activesupport'
+gem 'i18n'
 
 group :development, :test do
+  gem 'tux'
   gem 'ruby-debug19'
   gem 'mongrel', '1.2.0.pre2'
 end

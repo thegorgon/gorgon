@@ -1,0 +1,244 @@
+module TagHelper
+  class TagAttributes
+    def initialize(hash={})
+      @attributes = hash
+    end
+    
+    def [](key)
+      @attributes[key]
+      @string = nil
+    end
+    
+    def []=(key, value)
+      @attributes[key] = value
+      @string = nil
+    end
+    
+    def to_s(scope="")
+      if @string.nil? || @string.empty?
+        @string = []
+        @attributes.each do |key, value|
+          attrname = scope && scope.length > 0 ? "#{scope}-#{key}" : key
+          case value
+          when Array
+            @string << "#{attrname}=\"#{value.collect { |v| v.to_s }.join(' ')}\""
+          when Hash
+            @string << TagAttributes.new(value).to_s(key)
+          else
+            @string << "#{attrname}=\"#{value}\""
+          end
+        end
+        @string.uniq!
+        @string.compact!
+        @string = @string.join(' ')
+      end
+    end
+    @string
+  end
+  
+  class ContentTag        
+    def initialize(name, content, attributes={})
+      @name = name
+      @content = content
+      @attributes = TagAttributes.new(attributes)
+    end
+    
+    def to_s
+      "<#{@name} #{@attributes}>#{@content}</#{@name}>"
+    end
+  end
+  
+  class EmptyTag
+    def initialize(name, attributes={}, self_closing=true)
+      @name = name
+      @self_closing = self_closing
+      @attributes = TagAttributes.new(attributes)
+    end
+
+    def to_s
+      "<#{@name} #{@attributes}#{@self_closing ? "/>" : ">"}"
+    end
+  end
+
+  def content_tag(name, content_or_options="", options={})
+    content = block_given?? yield : content_or_options
+    attributes = block_given?? content_or_options : options
+    ContentTag.new(name, content, attributes).to_s
+  end
+  
+  def tag(name, options={}, self_closing=true)
+    EmptyTag.new(name, options, self_closing).to_s
+  end
+  
+  def image_tag(src, options={})
+    options[:src] = compute_public_path(src)
+    options[:alt] ||= ""
+    tag(:img, options)
+  end
+  
+  def mail_to(email_address, name = nil, html_options = {})
+    email_address = html_escape(email_address)
+
+    html_options = html_options.stringify_keys
+    encode = html_options.delete("encode").to_s
+    cc, bcc, subject, body = html_options.delete("cc"), html_options.delete("bcc"), html_options.delete("subject"), html_options.delete("body")
+
+    extras = []
+    extras << "cc=#{Rack::Utils.escape(cc).gsub("+", "%20")}" unless cc.nil?
+    extras << "bcc=#{Rack::Utils.escape(bcc).gsub("+", "%20")}" unless bcc.nil?
+    extras << "body=#{Rack::Utils.escape(body).gsub("+", "%20")}" unless body.nil?
+    extras << "subject=#{Rack::Utils.escape(subject).gsub("+", "%20")}" unless subject.nil?
+    extras = extras.empty? ? '' : '?' + html_escape(extras.join('&'))
+
+    email_address_obfuscated = email_address.dup
+    email_address_obfuscated.gsub!(/@/, html_options.delete("replace_at")) if html_options.has_key?("replace_at")
+    email_address_obfuscated.gsub!(/\./, html_options.delete("replace_dot")) if html_options.has_key?("replace_dot")
+
+    string = ''
+
+    if encode == "javascript"
+      html   = content_tag("a", name || email_address_obfuscated, html_options.merge("href" => "mailto:#{email_address}#{extras}"))
+      html   = escape_javascript(html)
+      "document.write('#{html}');".each_byte do |c|
+        string << sprintf("%%%x", c)
+      end
+      "<script type=\"application/javascript\">eval(decodeURIComponent('#{string}'))</script>"
+    elsif encode == "hex"
+      email_address_encoded = ''
+      email_address_obfuscated.each_byte do |c|
+        email_address_encoded << sprintf("&#%d;", c)
+      end
+
+      protocol = 'mailto:'
+      protocol.each_byte { |c| string << sprintf("&#%d;", c) }
+
+      email_address.each_byte do |c|
+        char = c.chr
+        string << (char =~ /\w/ ? sprintf("%%%x", c) : char)
+      end
+      content_tag "a", name || email_address_encoded, html_options.merge("href" => "#{string}#{extras}")
+    else
+      content_tag "a", name || email_address_obfuscated, html_options.merge("href" => "mailto:#{email_address}#{extras}")
+    end
+  end  
+  def link_to(text, url, options={})
+    content_tag(:a, text, options.merge!(:href => url))
+  end
+  
+  def img_link_to(src, url, options={})
+    link_to image_tag(src, options.slice(:size, :width, :height, :border, :alt)), url, options.except(:size, :width, :height, :border, :alt)
+  end
+  
+  def link_to_with_current(text, url, options={})
+    add_class("current", options) if current_page?(url)
+    link_to text, url, options
+  end
+  
+  def current_page?(path)
+    request.path_info == path
+  end
+  
+  def button_tag(options={}, &block)
+    options[:type] ||= 'submit'
+    button = "<button"
+    options.each do |k, v|
+      button << " #{k}=\"#{v}\""
+    end
+    button << "><div class=\"btntxt\">"
+    haml_concat(button)
+    block.call if block
+    haml_concat("</div></button>")
+  end
+
+  def analytics_tag(account_id)
+    content_tag(:script, :type => "application/javascript") do
+      "var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '#{account_id}']);
+      _gaq.push(['_setDomainName', '.thegorgonlab.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();"
+    end
+  end
+
+  def typekit_tag(id)
+    "<script type=\"text/javascript\" src=\"http://use.typekit.com/#{id}.js?v=#{Time.now.to_i}\"></script>
+     <script type=\"text/javascript\">try{Typekit.load();}catch(e){}</script>"
+  end
+
+  def at_anywhere_tag(key)
+    "<script type=\"text/javascript\" src=\"http://platform.twitter.com/anywhere.js?id=#{key}&v=1\"></script>"
+  end
+  
+  # Create a named haml tag to wrap IE conditional around a block
+  # http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+  def ie_tag(name=:body, attrs={}, &block)
+    attrs.symbolize_keys!
+    haml_concat("<!--[if lt IE 7]> #{ tag(name, add_class('ie6', attrs), false) } <![endif]-->")
+    haml_concat("<!--[if IE 7]>    #{ tag(name, add_class('ie7', attrs), false) } <![endif]-->")
+    haml_concat("<!--[if IE 8]>    #{ tag(name, add_class('ie8', attrs), false) } <![endif]-->")
+    haml_concat("<!--[if gt IE 8]><!-->")
+    haml_tag name, attrs do
+      haml_concat("<!--<![endif]-->")
+      block.call
+    end
+  end
+
+  def ie_html(attrs={}, &block)
+    ie_tag(:html, attrs, &block)
+  end
+
+  def ie_body(attrs={}, &block)
+    ie_tag(:body, attrs, &block)
+  end
+  
+  def first_or_last(index, collection)
+    if index == collection.length - 1
+      "last"
+    elsif index == 0
+      "first"
+    else
+      nil
+    end
+  end
+  
+  private
+  
+  JS_ESCAPE_MAP = { '\\' => '\\\\', '</' => '<\/', "\r\n" => '\n', "\n" => '\n', "\r" => '\n', '"' => '\\"', "'" => "\\'" }
+  
+  def escape_javascript(javascript)
+    if javascript
+      javascript.gsub(/(\\|<\/|\r\n|[\n\r"'])/) { JS_ESCAPE_MAP[$1] }
+    else
+      ''
+    end
+  end
+  
+  def compute_public_path(source)
+    if is_uri?(source)
+      source
+    elsif source[0] != ?/
+      asset_path(source)
+    else
+      source 
+    end
+  end
+    
+  def is_uri?(path)
+    path =~ %r{^[-a-z]+://|^cid:}
+  end
+  
+  def add_class(name, attrs)
+    classes = (attrs[:class] || '').split(' ')
+    classes << name
+    classes.uniq!
+    classes.compact!
+    classes = classes.join(' ')
+    classes.strip!
+    attrs.merge(:class => classes)
+  end
+end

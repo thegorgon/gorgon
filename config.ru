@@ -1,4 +1,9 @@
-# This file is used by Rack-based servers to start the application.
+require './application'
 
-require ::File.expand_path('../config/environment',  __FILE__)
-run Gorgon::Application
+map '/assets' do
+  run Gorgon::Server.sprockets
+end
+
+map '/' do
+  run Gorgon::Server
+end

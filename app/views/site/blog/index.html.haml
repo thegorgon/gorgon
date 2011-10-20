@@ -1,8 +1,0 @@
--@posts.each_with_index do |post, i|
-  =render :partial => "post", :object => post, :locals => {:first_or_last => first_or_last(i, @posts)}
-  
-.pagination.clearfix
-  -if @posts.previous_page
-    =link_to "<&nbsp;&nbsp;Newer Entries".html_safe, param_path("blog", :page => @posts.previous_page)
-  -if @posts.next_page
-    =link_to "Older Entries&nbsp;&nbsp;>".html_safe, param_path("blog", :page => @posts.next_page)

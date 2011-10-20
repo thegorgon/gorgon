@@ -1,0 +1,129 @@
+@import "../shared/_mixins";
+
+.site.blog {
+  .pagination {
+    @include tf;
+    font-size: 20px;
+    float: right;
+    margin: 20px;
+    a {
+      color: #000;
+      text-decoration: none;
+      padding: 0 5px;
+    }
+  }
+  .post {
+    margin: 0 auto;
+    padding-top: 1px;
+    h1 {
+      text-align: left;
+      font-size: 2.5em;
+      font-weight: normal;
+      margin: 10px 0;
+      a {
+        color: #333;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .body {
+      .column {
+        margin-right: 20px;
+        &.last {
+          margin: 0;
+        }
+      }
+    }
+    .social {
+      margin: 2em auto 0;
+      .share {
+        float: left;
+        margin-right: 10px;
+        &.last {
+          margin: 0;
+        }
+      }
+      .comment_count {
+        width: 27px;
+        line-height: 22px;
+        height: 24px;
+        font-size: 12px;
+        font-weight: bold;
+        display: block;
+        color: #333;
+        text-align: center;
+        background: transparent url(<%= asset_path "icons/commentswhover27x24.png" %>) no-repeat 0 0;
+        text-decoration: none;
+        &:hover, &:active {
+          background-position: 0 -24px;
+          color: #fff;
+        }
+      }
+    }
+    .comments {
+      display: none;
+      margin: 1em auto 0;
+    }
+    .comments.narrow {
+      display: block;
+    }
+    p {
+      font-size: 1.2em;
+      line-height: 1.4em;
+      text-align: justify;
+      margin: 1em 0;
+    }
+    .link {
+      a {
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    hr {
+      height: 0px;
+      margin: 1em auto;
+      border-top: 1px solid #999;
+      border-bottom: 1px solid #fff;
+    }
+  }
+}
+@media screen and (min-width: 480px) {
+  .site.blog {
+    .post {
+      .comments.narrow, .comments.wide {
+        display: none;
+      }
+      .comments.midWidth {
+        display: block;
+      }
+    }
+  }
+}
+@media screen and (min-width: 650px) {
+  .site.blog {
+    .post {
+      .comments.narrow, .comments.midWidth {
+        display: none;
+      }
+      .comments.narrow {
+        display: block;
+      }
+    }
+  }
+}
+@media screen and (min-width: 1000px) {
+  .site.blog {
+    .post {
+      .comments.narrow, .comments.midWidth {
+        display: none;
+      }
+      .comments.wide {
+        display: block;
+      }
+    }
+  }
+}
