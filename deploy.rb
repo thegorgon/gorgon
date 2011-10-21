@@ -1,5 +1,6 @@
-require './config/boot'
-require 'bundler/capistrano'
+require './application'
+require 'capistrano'
+require 'capistrano/recipes/deploy'
 
 set :application, "gorgon"
 set :repository,  "git@github.com:thegorgon/gorgon.git"
@@ -21,7 +22,6 @@ default_run_options[:pty] = true
 role :web, "gorgon"
 role :app, "gorgon"
 role :db,  "gorgon", :primary => true
-
 
 namespace :deploy do
   task :start do ; end

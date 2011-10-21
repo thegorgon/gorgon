@@ -9,7 +9,7 @@ gem 'sass'
 gem 'sprockets', '~> 2.0'
 gem 'mysql2', '0.2.7'
 gem 'redis-objects'
-gem 'tumblrb', :require => "tumblr", :path => "/Users/jreiss/Projects/ruby/gems/tumblrb"
+gem 'tumblrb', :require => "tumblr"
 gem 'nokogiri'
 gem 'builder'
 gem 'uglifier'
