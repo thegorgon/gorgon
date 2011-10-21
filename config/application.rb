@@ -25,7 +25,7 @@ Tumblr.blog = 'thegorgonlab'
 require File.expand_path("../../server", __FILE__)
 
 if Gorgon::Server.settings.environment != :development
-  log_path = File.expand_path("../log/sinatra.log", __FILE__)
+  log_path = File.expand_path("../../log/sinatra.log", __FILE__)
   FileUtils.mkdir_p File.dirname(log_path)
   log = File.new(log_path, 'a')
   $stdout.reopen(log)

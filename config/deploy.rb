@@ -13,7 +13,7 @@ set :branch,        "master"
 set :deploy_via,    :remote_cache
 set :deploy_to,     '/u/app'
 set :keep_releases, 10
-set :rails_env,     'production'
+set :rack_env,     'production'
 
 ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
@@ -32,7 +32,7 @@ end
 
 namespace :assets do
   task :optimize, :roles => :web do
-    send(:run, "cd #{release_path} && RAILS_ENV=#{rails_env} rake assets:precompile:all")
+    send(:run, "cd #{release_path} && RACK_ENV=#{rack_env} rake assets:precompile")
   end
 end
 
