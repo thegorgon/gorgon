@@ -1,6 +1,5 @@
-require './application'
+require './config/application'
 require 'capistrano'
-require 'capistrano/recipes/deploy'
 
 set :application, "gorgon"
 set :repository,  "git@github.com:thegorgon/gorgon.git"

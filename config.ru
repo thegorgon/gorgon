@@ -1,4 +1,4 @@
-require './application'
+require './config/application'
 
 map '/assets' do
   run Gorgon::Server.sprockets

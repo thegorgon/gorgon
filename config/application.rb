@@ -13,7 +13,7 @@ require 'active_support/core_ext/object'
 require 'active_support/core_ext/class'
 
 (Dir["app/**/*.rb"] + Dir["lib/**/*.rb"]).each do |dir|
-  require File.expand_path("../#{dir}", __FILE__)
+  require File.expand_path("../../#{dir}", __FILE__)
 end
 
 $redis = Redis.new(:host => 'localhost', :port => 2811)
@@ -22,7 +22,7 @@ Redis::Objects.redis = $redis
 Tumblr.user = Tumblr::User.new 'jessereiss@gmail.com', 'medusa'
 Tumblr.blog = 'thegorgonlab'
 
-require './server'
+require File.expand_path("../../server", __FILE__)
 
 if Gorgon::Server.settings.environment != :development
   log_path = File.expand_path("../log/sinatra.log", __FILE__)
