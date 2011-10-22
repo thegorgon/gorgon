@@ -7,29 +7,64 @@
       font-size: 16px;
       margin: 1em auto;
     }
+    .image {
+      margin: 0 auto
+    }
     .error {
       margin: 0 auto;
     }
   }
-  .server {
+  .not_found {
     .image {
-      background-image: transparent url(<%= asset_path 'logos/bernini100x126.png' %>) no-repeat center center;
+      background: transparent url(<%= asset_path 'logos/bernini100x126.png' %>) no-repeat center center;
       width: 100px;
       height: 126px;
     }
   }
   .unprocessable {
     .image {
-      background-image: transparent url(<%= asset_path 'logos/bernini100x126.png' %>) no-repeat center center;
-      width: 100px;
-      height: 126px;
+      background: transparent url(<%= asset_path 'logos/perseus64x130.png' %>) no-repeat center center;
+      width: 64px;
+      height: 130px;
     }
   }
-  .not_found {
+  .server {
     .image {
-      background-image: transparent url(<%= asset_path 'logos/bernini100x126.png' %>) no-repeat center center;
+      background: transparent url(<%= asset_path 'logos/caravaggio100x102.png' %>) no-repeat center center;
       width: 100px;
-      height: 126px;
+      height: 102px;
+    }
+  }
+}
+@media screen and (min-width: 650px) {
+  .site.errors {
+    #bd {
+      .error {
+        h1 {
+          font-size: 22px
+        }
+      }
+    }
+    .not_found {
+      .image {
+        background: transparent url(<%= asset_path 'logos/bernini230x290.png' %>) no-repeat center center;
+        width: 230px;
+        height: 290px;
+      }
+    }
+    .unprocessable {
+      .image {
+        background: transparent url(<%= asset_path 'logos/perseus148x300.png' %>) no-repeat center center;
+        width: 148px;
+        height: 300px;
+      }
+    }
+    .server {
+      .image {
+        background: transparent url(<%= asset_path 'logos/caravaggio295x300.png' %>) no-repeat center center;
+        width: 295px;
+        height: 300px;
+      }
     }
   }
 }
@@ -38,9 +73,6 @@
     #bd {
       .error {
         width: 650px;
-        h1 {
-          font-size: 22px;
-        }
       }
     }
   }

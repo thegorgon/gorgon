@@ -9,6 +9,12 @@ module Gorgon
             AssetsHelper, 
             ApplicationHelper
     
+    before do
+      set_title "the gorgon lab - rants and ravings from the mind of jesse reiss"
+      set_keywords "jesse reiss", "the gorgon lab", "gorgon", "technology", "entrepreneurship", "blog"
+      set_description "the gorgon lab is the personal website and blog of jesse reiss. topics include technology, entrepreneurship, food, philosophy, and san francsico."
+    end
+    
     get '/?' do
       set_namespace "site_home_index"
       hide_header!
@@ -20,11 +26,9 @@ module Gorgon
       haml :about
     end
     
-    get '/blog/:slug' do
-      set_namespace "site_blog_show"
-      @post = Blog.find(params[:slug])
-      raise Sinatra::NotFound unless @post
-      haml :post, :locals => {:post => @post, :show_comments => true, :first_or_last => "first"}
+    get '/blog/refresh' do
+      Blog.refresh!
+      redirect '/blog'
     end
     
     get '/blog' do
@@ -37,7 +41,19 @@ module Gorgon
       @posts = Blog.all
       builder :blog, :locals => {:posts => @posts}
     end
-    
+
+    get '/blog/:slug' do
+      set_namespace "site_blog_show"
+      @post = Blog.find(params[:slug])
+      raise Sinatra::NotFound unless @post && @post.respond_to?(:to_tumblr)
+      
+      prepend_title remove_tags(@post.to_tumblr.title)
+      append_keywords @post.to_tumblr.tags
+      set_description "#{(truncate_string(remove_tags(@post.to_tumblr.body), 200).strip)}..."
+      
+      haml :post, :locals => {:post => @post, :show_comments => true, :first_or_last => "first"}
+    end
+        
     get '/twitter' do
       set_namespace "site_home_twitter"
       @ext = "http://www.twitter.com/#!/jessereiss"

@@ -13,8 +13,11 @@
     }
   }
   .post {
-    margin: 0 auto;
+    margin: 0 auto 20px;
     padding-top: 1px;
+    &.last {
+      margin-bottom: 0;
+    }
     h1 {
       text-align: left;
       font-size: 2.5em;
@@ -25,14 +28,6 @@
         text-decoration: none;
         &:hover {
           text-decoration: underline;
-        }
-      }
-    }
-    .body {
-      .column {
-        margin-right: 20px;
-        &.last {
-          margin: 0;
         }
       }
     }
@@ -106,6 +101,7 @@
 @media screen and (min-width: 650px) {
   .site.blog {
     .post {
+      margin-bottom: 30px;
       .comments.narrow, .comments.midWidth {
         display: none;
       }

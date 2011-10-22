@@ -15,7 +15,7 @@ set :deploy_via,    :remote_cache
 set :deploy_to,     '/u/app'
 set :keep_releases, 10
 set :rack_env,     'production'
-
+set :normalize_asset_timestamps, false
 ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
 
@@ -33,11 +33,11 @@ end
 
 namespace :assets do
   task :optimize, :roles => :web do
-    send(:run, "cd #{release_path} && RACK_ENV=#{rack_env} rake assets:precompile --trace")
+    run("cd #{release_path} && RACK_ENV=#{rack_env} rake assets:precompile")
   end
 end
 
-after 'deploy:update_code', 'assets:optimize'
+# after 'deploy:update_code', 'assets:optimize'
 
 after 'deploy' do
   system("git tag release-`date +%Y_%m_%d-%H%M`")

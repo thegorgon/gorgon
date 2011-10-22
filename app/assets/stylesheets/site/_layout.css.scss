@@ -105,6 +105,10 @@ h1, h2 {
   #page {
     width: 480px;
   }
+  header {
+    margin: 0 auto;
+    text-align: center;
+  }
 }
 
 @media screen and (min-width: 650px) {

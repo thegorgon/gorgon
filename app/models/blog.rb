@@ -1,5 +1,6 @@
 require "redis/set"
 require "redis/value"
+require "redis/list"
 require 'tumblr'
 require 'tumblr/item'
 require 'json'
@@ -25,7 +26,6 @@ class Blog
       items = Tumblr::Item.paginate(:page => page, :per_page => per_page)
       if items && items.success?
         page = items.next_page
-        puts items.inspect
         items.each do |item|
           index << item.slug
           entry = Blog.new.from_tumblr(item)
@@ -52,7 +52,7 @@ class Blog
   end
   
   def self.index
-    @index ||= Redis::Set.new(STORAGE_KEY)
+    @index ||= Redis::List.new(STORAGE_KEY)
   end
     
   def self.find(slug)

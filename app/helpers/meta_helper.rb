@@ -1,14 +1,61 @@
 module MetaHelper
+  def set_title(value)
+    @page_title = value
+  end
+  
+  def prepend_title(value)
+    @page_title ||= ""
+    @page_title = @page_title.length > 0 ? "#{value} - #{@page_title}" : value
+  end
+  
+  def append_title(value)
+    @page_title ||= ""
+    @page_title << @page_title.length > 0 ? "- #{value}" : value
+  end
+
   def page_title
-    @page_title || ""
+    @page_title
+  end
+  
+  def append_keywords(*kws)
+    kws = kws.first if kws.length == 1 && kws.first.kind_of?(Array)
+    @page_keywords = (@page_keywords || []) + kws
+  end
+  
+  def prepend_keywords(*kws)
+    kws = kws.first if kws.length == 1 && kws.first.kind_of?(Array)
+    @page_keywords = kws + (@page_keywords || [])
+  end
+
+  def set_keywords(*kws)
+    kws = kws.first if kws.length == 1 && kws.first.kind_of?(Array)
+    @page_keywords = kws
   end
 
   def page_keywords
-    @page_keywords || ""
+    (@page_keywords || []).uniq.join(', ')
+  end
+  
+  def set_description(value)
+    @page_description = value
+  end
+  
+  def page_description
+    @page_description
+  end
+  
+  def set_namespace(value)
+    @page_namespace = value
   end
 
-  def page_description
-    @page_descriptions || ""
+  def page_namespace
+    @page_namespace
+  end
+
+  def page_classes
+    names = @page_namespace.to_s.split("_")
+    names.pop
+    names.join(" ")
   end
   
   def meta_property(property, content)
