@@ -33,7 +33,7 @@ end
 
 namespace :assets do
   task :optimize, :roles => :web do
-    send(:run, "cd #{release_path} && RACK_ENV=#{rack_env} rake assets:precompile")
+    send(:run, "cd #{release_path} && RACK_ENV=#{rack_env} rake assets:precompile --trace")
   end
 end
 
