@@ -1,5 +1,6 @@
 require './config/application'
 require 'capistrano'
+require 'bundler/capistrano'
 
 set :application, "gorgon"
 set :repository,  "git@github.com:thegorgon/gorgon.git"

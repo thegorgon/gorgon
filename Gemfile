@@ -17,6 +17,8 @@ gem 'closure-compiler'
 gem 'yui-compressor', :require => "yui/compressor"
 gem 'activesupport'
 gem 'i18n'
+gem 'execjs'
+gem 'therubyracer'
 
 group :development, :test do
   gem 'tux'
