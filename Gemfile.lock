@@ -1,14 +1,3 @@
-PATH
-  remote: vendor/gems/sinatra-sprockets
-  specs:
-    sinatra-sprockets (0.0.1)
-      closure-compiler
-      execjs
-      sprockets (~> 2.0.0)
-      therubyracer
-      uglifier
-      yui-compressor
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -87,6 +76,13 @@ GEM
       rack (~> 1.3)
       rack-protection (~> 1.1)
       tilt (~> 1.3)
+    sinatra-sprockets (0.0.1)
+      closure-compiler
+      execjs
+      sprockets (~> 2.0.0)
+      therubyracer
+      uglifier
+      yui-compressor
     sprockets (2.0.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -129,7 +125,7 @@ DEPENDENCIES
   ruby-debug19
   sass
   sinatra
-  sinatra-sprockets!
+  sinatra-sprockets
   sprockets (~> 2.0)
   therubyracer
   tumblrb

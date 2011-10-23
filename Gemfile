@@ -18,7 +18,7 @@ gem 'activesupport'
 gem 'i18n'
 gem 'execjs'
 gem 'therubyracer'
-gem "sinatra-sprockets", :path => "vendor/gems/sinatra-sprockets"
+gem "sinatra-sprockets"
 
 group :development, :test do
   gem 'tux'
