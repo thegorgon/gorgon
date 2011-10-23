@@ -37,7 +37,7 @@ namespace :assets do
   end
 end
 
-# after 'deploy:update_code', 'assets:optimize'
+after 'deploy:update_code', 'assets:optimize'
 
 after 'deploy' do
   system("git tag release-`date +%Y_%m_%d-%H%M`")
