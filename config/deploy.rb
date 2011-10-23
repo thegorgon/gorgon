@@ -16,6 +16,8 @@ set :deploy_to,     '/u/app'
 set :keep_releases, 10
 set :rack_env,     'production'
 set :normalize_asset_timestamps, false
+set :default_environment, { 'LANG' => 'en_US.UTF-8' }
+
 ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
 
@@ -33,7 +35,7 @@ end
 
 namespace :assets do
   task :optimize, :roles => :web do
-    run("cd #{release_path} && RACK_ENV=#{rack_env} rake assets:precompile")
+    run("cd #{release_path} && RACK_ENV=#{rack_env} rake assets:clean:all && rake assets:precompile:all")
   end
 end
 
