@@ -3,11 +3,11 @@ require "fileutils"
 namespace :assets do
   desc "Compile all the assets named in config.assets.precompile"
   task :precompile do
-    put "HERE!"
+    puts "HERE!"
     Rake::Task["assets:clean:all"].invoke 
-    put "THEN HERE!"
+    puts "THEN HERE!"
     Rake::Task["assets:precompile:all"].invoke
-    put "DONE!"
+    puts "DONE!"
   end
 
   namespace :precompile do
