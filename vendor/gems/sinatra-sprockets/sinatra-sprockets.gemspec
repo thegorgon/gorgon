@@ -27,8 +27,18 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'execjs'
   s.add_runtime_dependency 'therubyracer'
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.files = [
+    "Gemfile",
+    "sinatra-sprockets.gemspec",
+    "lib/sinatra-sprockets.rb",
+    "lib/sinatra/sprockets.rb",
+    "lib/sinatra/sprockets/asset_paths.rb",
+    "lib/sinatra/sprockets/configuration.rb",
+    "lib/sinatra/sprockets/helpers.rb",
+    "lib/sinatra/sprockets/rake.rb",
+    "lib/sinatra/sprockets/static_compiler.rb",
+    "lib/sinatra/sprockets/version.rb"
+  ]
+  
   s.require_paths << "lib"
 end
