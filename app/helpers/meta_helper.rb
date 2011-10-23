@@ -66,14 +66,6 @@ module MetaHelper
     tag(:meta, :name => name, :content => content)
   end
   
-  def favicon_link_tag(source='/favicon.ico', options={})
-    tag('link', {
-      :rel  => 'shortcut icon',
-      :type => 'image/vnd.microsoft.icon',
-      :href => compute_public_path(source),
-    }.merge(options.symbolize_keys))
-  end
-  
   def auto_discovery_link_tag(type = "application/rss+xml", url = "/index.xml", tag_options = {})
     tag(
       "link",

@@ -1,11 +1,10 @@
--tumblr = post.to_tumblr
 -host = "www.thegorgonlab.com"
 -show_comments ||= false
 -first_or_last ||= false
 
 .post{:class => first_or_last}
-  %h1=link_to tumblr.title.downcase, url("/blog/#{post.to_param}")
-  .body= tumblr.body
+  %h1=link_to post.title.downcase, url("/blog/#{post.to_param}")
+  .body= post.body
     
   .social.clearfix
     -unless show_comments

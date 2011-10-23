@@ -10,9 +10,8 @@
       =link_to_with_current "blog", '/blog'
       =link_to_with_current "projects", '/projects'
     %nav.ext
-      =img_link_to "logos/external/twitter-32x32.png", "http://twitter.com/jessereiss", :size => "32x32", :alt => "twiiter", :target => "_new"
-      =img_link_to "logos/external/aboutme-32x32.png", "http://about.me/jessereiss", :class => "first", :size => "32x32", :alt => "about.me", :target => "_new"
-      =img_link_to "logos/external/linkedin-32x32.png", "http://www.linkedin.com/in/jessereiss", :size => "32x32", :alt => "linkedin", :target => "_new"
-      =img_link_to "logos/external/github-32x32.png", "https://github.com/thegorgon", :size => "32x32", :alt => "github", :target => "_new"
-      =img_link_to "logos/external/stackoverflow-32x32.png", "http://stackoverflow.com/users/654332/jesse-reiss", :size => "32x32", :alt => "stackoverflow", :target => "_new"
-      
+      %a.twitter.first{:target => "_new", :href => "http://twitter.com/jessereiss"} &nbsp;
+      %a.aboutme{:target => "_new", :href => "http://about.me/jessereiss"} &nbsp;
+      %a.linkedin{:target => "_new", :href => "http://www.linkedin.com/in/jessereiss"} &nbsp;
+      %a.github{:target => "_new", :href => "https://github.com/thegorgon"} &nbsp;
+      %a.stackoverflow.last{:target => "_new", :href => "http://stackoverflow.com/users/654332/jesse-reiss"} &nbsp;

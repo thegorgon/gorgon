@@ -69,15 +69,6 @@ header {
       }
     }
   }
-  nav.ext {
-    margin: 20px 0 0 0;
-    h2 {
-      @include tf;
-      font-weight: normal;
-      font-size: 1.2em;
-      margin: 0 0 10px 0;
-    }
-  }
 }
 .rule {
   height: 0;
@@ -96,12 +87,69 @@ a, a:visited {
 #bd {
   padding: 0 10px;
 }
+nav.ext {
+  margin: 20px 0 0 0;
+  h2 {
+    @include tf;
+    font-weight: normal;
+    font-size: 1.2em;
+    margin: 0 0 10px 0;
+  }
+  a {
+    width: 32px;
+    height: 32px;
+    margin: 0 5px;
+    display: block;
+    text-decoration: none;
+    background-color: transparent;
+    background-image: url(<%= asset_path('logos/external.png') %>);
+    background-repeat: no-repeat;
+    float: left;
+    &.first {
+      margin-left: 0;
+    }
+    &.last {
+      margin-right: 0;
+    }
+    &.aboutme {
+      background-position: 0 0;
+      &:hover {
+        background-position: 0 -36px;
+      }
+    }
+    &.twitter {
+      background-position: -105px 0;
+      &:hover {
+        background-position: -105px -36px;
+      }
+    }
+    &.linkedin {
+      background-position: -140px 0;
+      &:hover {
+        background-position: -140px -36px;
+      }
+    }
+    &.github {
+      background-position: -70px 0;
+      &:hover {
+        background-position: -70px -36px;
+        
+      }
+    }
+    &.stackoverflow {
+      background-position: -35px 0;
+      &:hover {
+        background-position: -35px -36px;
+      }
+    }
+  }
+}
 h1, h2 {
   text-shadow: rgba(255,255,255,1) 0px 1px 0px;
   @include tf;
 } 
 
-@media screen and (min-width:480px) {
+@media screen and (min-width: 480px) and (max-width: 650px) {
   #page {
     width: 480px;
   }

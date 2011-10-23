@@ -9,6 +9,7 @@ require 'redis'
 require 'redis/objects'
 require 'tumblr'
 require 'active_support/core_ext/string'
+require 'active_support/core_ext/hash'
 require 'active_support/core_ext/object'
 require 'active_support/core_ext/class'
 
@@ -32,13 +33,19 @@ if Gorgon::Server.settings.environment != :development
   $stderr.reopen(log)
 end
 
-Gorgon::Server.sprockets = Sprockets::Environment.new(Gorgon::Server.root)
-['stylesheets', 'javascripts', 'images'].each do |dir|
-  Gorgon::Server.sprockets.append_path(File.join(Gorgon::Server.root, 'app', 'assets', dir))
-end
-Gorgon::Server.sprockets.js_compressor = Closure::Compiler.new
-Gorgon::Server.sprockets.css_compressor = YUI::CssCompressor.new
+Sinatra::Sprockets.configure do |config|
+  config.app = Gorgon::Server
+  
+  ['stylesheets', 'javascripts', 'images'].each do |dir|
+    config.append_path(File.join('app', 'assets', dir))
+  end
+  
+  testing = Gorgon::Server.settings.environment == :development
+  config.digest = config.compress = !testing
+  config.debug = testing
 
-Gorgon::Server.sprockets.context_class.instance_eval do
-  include AssetsHelper
+  config.precompile = ['scripts.js', 'vendor.js', 'site.css', /.+\.(png|ico|gif|jpeg|jpg)$/]
 end
+
+Gorgon::Server.set(:start_time, Time.now)
+Gorgon::Server.set(:revision, Gorgon::Server.settings.environment == :development ? Time.now.to_i : `cat REVISION`)

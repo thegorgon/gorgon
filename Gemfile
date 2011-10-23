@@ -7,7 +7,6 @@ gem 'capistrano'
 gem 'haml'
 gem 'sass'
 gem 'sprockets', '~> 2.0'
-gem 'mysql2', '0.2.7'
 gem 'redis-objects'
 gem 'tumblrb', :require => "tumblr"
 gem 'nokogiri'
@@ -19,6 +18,7 @@ gem 'activesupport'
 gem 'i18n'
 gem 'execjs'
 gem 'therubyracer'
+gem "sinatra-sprockets", :path => "vendor/gems/sinatra-sprockets"
 
 group :development, :test do
   gem 'tux'

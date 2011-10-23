@@ -1,94 +1,10 @@
 module TagHelper
-  class TagAttributes
-    def initialize(hash={})
-      @attributes = hash
-    end
-    
-    def [](key)
-      @attributes[key]
-      @string = nil
-    end
-    
-    def []=(key, value)
-      @attributes[key] = value
-      @string = nil
-    end
-    
-    def to_s(scope="")
-      if @string.nil? || @string.empty?
-        @string = []
-        @attributes.each do |key, value|
-          attrname = scope && scope.length > 0 ? "#{scope}-#{key}" : key
-          case value
-          when Array
-            @string << "#{attrname}=\"#{value.collect { |v| v.to_s }.join(' ')}\""
-          when Hash
-            @string << TagAttributes.new(value).to_s(key)
-          else
-            @string << "#{attrname}=\"#{value}\""
-          end
-        end
-        @string.uniq!
-        @string.compact!
-        @string = @string.join(' ')
-      end
-    end
-    @string
-  end
-  
-  class ContentTag        
-    def initialize(name, content, attributes={})
-      @name = name
-      @content = content
-      @attributes = TagAttributes.new(attributes)
-    end
-    
-    def to_s
-      "<#{@name} #{@attributes}>#{@content}</#{@name}>"
-    end
-  end
-  
-  class EmptyTag
-    def initialize(name, attributes={}, self_closing=true)
-      @name = name
-      @self_closing = self_closing
-      @attributes = TagAttributes.new(attributes)
-    end
-
-    def to_s
-      "<#{@name} #{@attributes}#{@self_closing ? "/>" : ">"}"
-    end
-  end
-
-  def content_tag(name, content_or_options="", options={})
-    content = block_given?? yield : content_or_options
-    attributes = block_given?? content_or_options : options
-    ContentTag.new(name, content, attributes).to_s
-  end
-  
-  def tag(name, options={}, self_closing=true)
-    EmptyTag.new(name, options, self_closing).to_s
-  end
-  
-  def image_tag(src, options={})
-    options[:src] = compute_public_path(src)
-    options[:alt] ||= ""
-    tag(:img, options)
-  end
-  
   def mail_to(email_address, name = nil, html_options = {})
     email_address = html_escape(email_address)
 
     html_options = html_options.stringify_keys
     encode = html_options.delete("encode").to_s
     cc, bcc, subject, body = html_options.delete("cc"), html_options.delete("bcc"), html_options.delete("subject"), html_options.delete("body")
-
-    extras = []
-    extras << "cc=#{Rack::Utils.escape(cc).gsub("+", "%20")}" unless cc.nil?
-    extras << "bcc=#{Rack::Utils.escape(bcc).gsub("+", "%20")}" unless bcc.nil?
-    extras << "body=#{Rack::Utils.escape(body).gsub("+", "%20")}" unless body.nil?
-    extras << "subject=#{Rack::Utils.escape(subject).gsub("+", "%20")}" unless subject.nil?
-    extras = extras.empty? ? '' : '?' + html_escape(extras.join('&'))
 
     email_address_obfuscated = email_address.dup
     email_address_obfuscated.gsub!(/@/, html_options.delete("replace_at")) if html_options.has_key?("replace_at")
@@ -97,11 +13,11 @@ module TagHelper
     string = ''
 
     if encode == "javascript"
-      html   = content_tag("a", name || email_address_obfuscated, html_options.merge("href" => "mailto:#{email_address}#{extras}"))
-      html   = escape_javascript(html)
+      html   = content_tag("a", name || email_address_obfuscated, html_options.merge("href" => "mailto:#{email_address}"))
       "document.write('#{html}');".each_byte do |c|
         string << sprintf("%%%x", c)
       end
+      
       "<script type=\"application/javascript\">eval(decodeURIComponent('#{string}'))</script>"
     elsif encode == "hex"
       email_address_encoded = ''
@@ -116,13 +32,13 @@ module TagHelper
         char = c.chr
         string << (char =~ /\w/ ? sprintf("%%%x", c) : char)
       end
-      content_tag "a", name || email_address_encoded, html_options.merge("href" => "#{string}#{extras}")
+      content_tag "a", name || email_address_encoded, html_options.merge("href" => "#{string}")
     else
-      content_tag "a", name || email_address_obfuscated, html_options.merge("href" => "mailto:#{email_address}#{extras}")
+      content_tag "a", name || email_address_obfuscated, html_options.merge("href" => "mailto:#{email_address}")
     end
   end  
   def link_to(text, url, options={})
-    content_tag(:a, text, options.merge!(:href => url))
+    content_tag("a", text, options.merge!(:href => url))
   end
   
   def img_link_to(src, url, options={})
@@ -151,7 +67,7 @@ module TagHelper
   end
 
   def analytics_tag(account_id)
-    content_tag(:script, :type => "application/javascript") do
+    content_tag("script", :type => "application/javascript") do
       "var _gaq = _gaq || [];
       _gaq.push(['_setAccount', '#{account_id}']);
       _gaq.push(['_setDomainName', '.thegorgonlab.com']);
@@ -207,30 +123,6 @@ module TagHelper
   end
   
   private
-  
-  JS_ESCAPE_MAP = { '\\' => '\\\\', '</' => '<\/', "\r\n" => '\n', "\n" => '\n', "\r" => '\n', '"' => '\\"', "'" => "\\'" }
-  
-  def escape_javascript(javascript)
-    if javascript
-      javascript.gsub(/(\\|<\/|\r\n|[\n\r"'])/) { JS_ESCAPE_MAP[$1] }
-    else
-      ''
-    end
-  end
-  
-  def compute_public_path(source)
-    if is_uri?(source)
-      source
-    elsif source[0] != ?/
-      asset_path(source)
-    else
-      source 
-    end
-  end
-    
-  def is_uri?(path)
-    path =~ %r{^[-a-z]+://|^cid:}
-  end
   
   def add_class(name, attrs)
     classes = (attrs[:class] || '').split(' ')

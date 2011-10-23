@@ -4,6 +4,7 @@ require "redis/list"
 require 'tumblr'
 require 'tumblr/item'
 require 'json'
+require 'digest/sha1'
 
 class Blog
   STORAGE_KEY = "gorgon:blog:entries"
@@ -104,6 +105,10 @@ class Blog
     self
   end
   
+  def etag
+    Digest::SHA1.hexdigest(xml)
+  end
+  
   def tags
     to_tumblr.tags
   end
@@ -134,6 +139,22 @@ class Blog
     tags.each do |tag|
       Redis::Set.new("#{STORAGE_KEY}:tags") << tag
       Redis::Set.new("#{STORAGE_KEY}:tags:#{tag.downcase.underscore}") << slug
+    end
+  end
+  
+  def respond_to?(method)
+    if to_tumblr.respond_to?(method)
+      true
+    else
+      super(method)
+    end
+  end
+  
+  def method_missing(method, *args, &block)
+    if to_tumblr.respond_to?(method)
+      to_tumblr.send(method, *args, &block)
+    else
+      super(method, *args, &block)
     end
   end
 end

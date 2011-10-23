@@ -1,7 +1,7 @@
 require './config/application'
 
 map '/assets' do
-  run Gorgon::Server.sprockets
+  run Sinatra::Sprockets.environment
 end
 
 map '/' do

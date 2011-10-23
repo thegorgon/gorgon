@@ -1,4 +1,8 @@
 require 'rake'
+require 'rubygems'
+require 'bundler'
+Bundler.require(:default)
+require 'sinatra/sprockets/rake'
 
 task :environment do
   require File.expand_path('../config/application', __FILE__)
