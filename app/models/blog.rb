@@ -4,6 +4,7 @@ require "redis/list"
 require 'tumblr'
 require 'tumblr/item'
 require 'json'
+require 'will_paginate/collection'
 require 'digest/sha1'
 
 class Blog
@@ -40,16 +41,16 @@ class Blog
   
   def self.all(slugs=nil)
     slugs ||= index
-    slugs.collect do |slug|
-      find(slug)
-    end
+    entries = slugs.collect { |slug| find(slug) }
+    entries.compact!
+    entries
   end
   
   def self.page(n)
     n = [1, n.to_i].max
-    start = (PAGE_SIZE * (n - 1))
-    finish = start + PAGE_SIZE
-    BlogPage.new(all(index[start..finish]), n, PAGE_SIZE, index.count)
+    WillPaginate::Collection.create(n, PAGE_SIZE, index.count) do |pager|
+      pager.replace Blog.all(index[pager.offset, pager.per_page]).to_a
+    end
   end
   
   def self.index

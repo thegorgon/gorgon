@@ -19,6 +19,7 @@ gem 'i18n'
 gem 'execjs'
 gem 'therubyracer'
 gem "sinatra-sprockets"
+gem 'will_paginate'
 
 group :development, :test do
   gem 'tux'

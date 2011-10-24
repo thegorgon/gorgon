@@ -33,6 +33,7 @@ module Gorgon
     end
     
     get '/blog/refresh' do
+      etag Digest::SHA1.hexdigest(Time.now.to_i.to_s)
       Blog.refresh!
       redirect to('/blog'), 301
     end
@@ -40,22 +41,27 @@ module Gorgon
     get '/blog' do
       set_namespace "site_blog_index"
       @posts = Blog.page(params[:page])
-      last_modified @posts.first.created_at
-      etag @posts.first.etag
+      if @posts.length > 0
+        last_modified @posts.first.created_at
+        etag @posts.first.etag
+      end
+      puts @posts.inspect
       haml :blog, :locals => {:posts => @posts}
     end
     
     get '/blog.xml' do
       @posts = Blog.all
-      last_modified @posts.first.created_at
-      etag @posts.first.etag
+      if @posts.length > 0
+        last_modified @posts.first.created_at
+        etag @posts.first.etag
+      end
       builder :blog, :locals => {:posts => @posts}
     end
 
     get '/blog/:slug' do
       set_namespace "site_blog_show"
       @post = Blog.find(params[:slug])
-      raise Sinatra::NotFound unless @post && @post.respond_to?(:to_tumblr)
+      raise Sinatra::NotFound unless @post
 
       last_modified @post.created_at
       etag @post.etag
@@ -97,18 +103,21 @@ module Gorgon
     end
     
     error 404, Sinatra::NotFound do
+      etag Digest::SHA1.hexdigest(Time.now.to_i.to_s)
       set_namespace "site_errors_notfound"
       status 404
       haml :'404'
     end
     
     error 422 do
+      etag Digest::SHA1.hexdigest(Time.now.to_i.to_s)
       set_namespace "site_errors_unprocessable"
       status 422
       haml :'422'
     end
     
     error 500, Exception do
+      etag Digest::SHA1.hexdigest(Time.now.to_i.to_s)
       set_namespace "site_errors_server"
       status 500
       haml :'500'
