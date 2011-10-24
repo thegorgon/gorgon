@@ -40,6 +40,7 @@ Sinatra::Sprockets.configure do |config|
     config.append_path(File.join('app', 'assets', dir))
   end
   
+  config.compile = false
   testing = Gorgon::Server.settings.environment == :development
   config.digest = config.compress = !testing
   config.debug = testing
