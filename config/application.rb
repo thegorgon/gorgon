@@ -47,5 +47,7 @@ Sinatra::Sprockets.configure do |config|
   config.precompile = ['scripts.js', 'vendor.js', 'site.css', /.+\.(png|ico|gif|jpeg|jpg)$/]
 end
 
+REVISION = `cat REVISION`.strip
+
 Gorgon::Server.set(:start_time, Time.now)
-Gorgon::Server.set(:revision, Gorgon::Server.settings.environment == :development ? Time.now.to_i : `cat REVISION`)
+Gorgon::Server.set(:revision, Gorgon::Server.settings.environment == :development ? Time.now.to_i : REVISION)
