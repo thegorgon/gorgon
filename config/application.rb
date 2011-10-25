@@ -13,9 +13,6 @@ require 'active_support/core_ext/class'
   require File.expand_path("../../#{dir}", __FILE__)
 end
 
-$redis = Redis.new(:host => 'localhost', :port => 2811)
-Redis::Objects.redis = $redis
-
 Tumblr.configure do |config|
   config.blog = "thegorgonlab"
   config.api_key = "1pLfP3eTlFjZi3trs2Medo78EwAaOLxMEAHUsRpfEoOS3nhbd8"

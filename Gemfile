@@ -8,7 +8,7 @@ gem 'haml'
 gem 'sass'
 gem 'sprockets', '~> 2.0'
 gem 'redis-objects'
-gem 'tumblrb', :require => "tumblr"
+gem "tumblrb", "2.0.1", :require => "tumblr", :git => "git://github.com/thegorgon/tumblrb.git"
 gem 'builder'
 gem 'uglifier'
 gem 'closure-compiler'
@@ -17,7 +17,7 @@ gem 'activesupport'
 gem 'i18n'
 gem 'execjs'
 gem 'therubyracer'
-gem "sinatra-sprockets"
+gem "sinatra-sprockets", "0.0.2", :git => "git://github.com/thegorgon/sinatra-sprockets.git"
 
 group :development, :test do
   gem 'tux'

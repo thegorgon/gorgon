@@ -1,7 +1,8 @@
-PATH
-  remote: /Users/jreiss/Projects/ruby/gems/sinatra-sprockets
+GIT
+  remote: git://github.com/thegorgon/sinatra-sprockets.git
+  revision: 7b596e17985127908de77e0394fd8dc24a0063a6
   specs:
-    sinatra-sprockets (0.0.1)
+    sinatra-sprockets (0.0.2)
       closure-compiler
       execjs
       sprockets (~> 2.0.0)
@@ -9,8 +10,9 @@ PATH
       uglifier
       yui-compressor
 
-PATH
-  remote: /Users/jreiss/Projects/ruby/gems/tumblrb
+GIT
+  remote: git://github.com/thegorgon/tumblrb.git
+  revision: 529f5d4f859cd8c8a5adbc7b908bb9cb4de5eb4b
   specs:
     tumblrb (2.0.1)
       activesupport (~> 3.0)
@@ -69,7 +71,6 @@ GEM
     net-ssh (2.2.1)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    nokogiri (1.4.7)
     open4 (1.2.0)
     rack (1.3.3)
     rack-protection (1.1.4)
@@ -102,7 +103,7 @@ GEM
       rack (~> 1.3)
       rack-protection (~> 1.1)
       tilt (~> 1.3)
-    sprockets (2.0.2)
+    sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
@@ -134,16 +135,15 @@ DEPENDENCIES
   i18n
   json
   mongrel (= 1.2.0.pre2)
-  nokogiri
   rack (= 1.3.3)
   redis-objects
   ruby-debug19
   sass
   sinatra
-  sinatra-sprockets!
+  sinatra-sprockets (= 0.0.2)!
   sprockets (~> 2.0)
   therubyracer
-  tumblrb!
+  tumblrb (= 2.0.1)!
   tux
   uglifier
   yui-compressor
