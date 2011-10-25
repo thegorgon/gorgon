@@ -3,6 +3,8 @@
   
 .pagination.clearfix
   -if @posts.previous_page
-    =link_to "<&nbsp;&nbsp;Newer Entries", "/blog/page/#{@posts.previous_page}"
+    %a{:href => url("/blog/page/#{@posts.previous_page}")}
+      < Newer Entries
   -if @posts.next_page
-    =link_to "Older Entries&nbsp;&nbsp;>", "/blog/page/#{@posts.next_page}"
+    %a{:href => url("/blog/page/#{@posts.next_page}")}
+      Older Entries >

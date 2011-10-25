@@ -4,10 +4,6 @@ require 'bundler'
 Bundler.require(:default)
 
 require 'sinatra/base'
-require 'haml'
-require 'redis'
-require 'redis/objects'
-require 'tumblr'
 require 'active_support/core_ext/string'
 require 'active_support/core_ext/hash'
 require 'active_support/core_ext/object'
@@ -20,8 +16,11 @@ end
 $redis = Redis.new(:host => 'localhost', :port => 2811)
 Redis::Objects.redis = $redis
 
-Tumblr.user = Tumblr::User.new 'jessereiss@gmail.com', 'medusa'
-Tumblr.blog = 'thegorgonlab'
+Tumblr.configure do |config|
+  config.blog = "thegorgonlab"
+  config.api_key = "1pLfP3eTlFjZi3trs2Medo78EwAaOLxMEAHUsRpfEoOS3nhbd8"
+  config.redis = {:host => "localhost", :port => 2811}
+end
 
 require File.expand_path("../../server", __FILE__)
 
@@ -40,8 +39,8 @@ Sinatra::Sprockets.configure do |config|
     config.append_path(File.join('app', 'assets', dir))
   end
   
-  config.compile = false
   testing = Gorgon::Server.settings.environment == :development
+  config.compile = testing
   config.digest = config.compress = !testing
   config.debug = testing
 

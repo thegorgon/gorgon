@@ -36,7 +36,8 @@ module TagHelper
     else
       content_tag "a", name || email_address_obfuscated, html_options.merge("href" => "mailto:#{email_address}")
     end
-  end  
+  end
+  
   def link_to(text, url, options={})
     content_tag("a", text, options.merge!(:href => url))
   end

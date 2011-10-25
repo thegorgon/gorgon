@@ -34,36 +34,38 @@ module Gorgon
     
     get '/blog/refresh' do
       etag Digest::SHA1.hexdigest(Time.now.to_i.to_s)
-      Blog.refresh!
+      Tumblr::Blog.refresh!
       redirect to('/blog'), 301
     end
     
     get '/blog' do
       set_namespace "site_blog_index"
-      @posts = Blog.page(params[:page])
+      @posts = Tumblr::Blog.page(params[:page]).per_page(3)
+      @posts = @posts.tagged_with(params[:tag]) if params[:tag]
+      puts "POSTS LENGTH : #{@posts.length}"
       if @posts.length > 0
-        last_modified @posts.first.created_at
-        etag @posts.first.etag
+        last_modified @posts.first.date
+        etag Digest::SHA1.hexdigest(Time.now.to_i.to_s)
       end
       puts @posts.inspect
       haml :blog, :locals => {:posts => @posts}
     end
     
     get '/blog.xml' do
-      @posts = Blog.all
+      @posts = Tumblr::Blog.all
       if @posts.length > 0
-        last_modified @posts.first.created_at
-        etag @posts.first.etag
+        last_modified @posts.first.date
+        etag Digest::SHA1.hexdigest(Time.now.to_i.to_s)
       end
       builder :blog, :locals => {:posts => @posts}
     end
 
     get '/blog/:slug' do
       set_namespace "site_blog_show"
-      @post = Blog.find(params[:slug])
+      @post = Tumblr::Blog.entry(params[:slug])
       raise Sinatra::NotFound unless @post
 
-      last_modified @post.created_at
+      last_modified @post.date
       etag @post.etag
       
       prepend_title @post.title

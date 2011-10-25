@@ -9,5 +9,5 @@
 %script{:id => "tweetTpl", :type => "text/x-jquery-tmpl"}
   .tweet
     .profile
-    %time ${jQuery.timeago(created_at)}
+    %time ${jQuery.timeago(date)}
     .text {{html jQuery.twitterify(text)}}

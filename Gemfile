@@ -9,7 +9,6 @@ gem 'sass'
 gem 'sprockets', '~> 2.0'
 gem 'redis-objects'
 gem 'tumblrb', :require => "tumblr"
-gem 'nokogiri'
 gem 'builder'
 gem 'uglifier'
 gem 'closure-compiler'
@@ -19,7 +18,6 @@ gem 'i18n'
 gem 'execjs'
 gem 'therubyracer'
 gem "sinatra-sprockets"
-gem 'will_paginate'
 
 group :development, :test do
   gem 'tux'
