@@ -42,7 +42,6 @@ module Gorgon
       set_namespace "site_blog_index"
       @posts = Tumblr::Blog.page(params[:page]).per_page(3)
       @posts = @posts.tagged_with(params[:tag]) if params[:tag]
-      puts "POSTS LENGTH : #{@posts.length}"
       if @posts.length > 0
         last_modified @posts.first.date
         etag Digest::SHA1.hexdigest(Time.now.to_i.to_s)
