@@ -81,6 +81,7 @@ module Gorgon
     end
     
     get '/projects' do
+      prepend_title "projects"
       set_namespace "site_projects_index"
       haml :projects
     end
