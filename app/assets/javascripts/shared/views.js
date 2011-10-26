@@ -30,6 +30,19 @@
         $('#timeline').append($( "#tweetTpl" ).tmpl( data )).removeClass('loading');
       });
     },
+    site_projects_index: function() {
+      var items = $('#projects').find('.project');
+      $('#projects').masonry({
+        itemSelector: '.project',
+        isAnimated: true
+      });
+      $('#controls').find('.control').unbind('click').bind('click', function(e) {
+        e.preventDefault();
+        var css = $(this).attr('id').split('_')[0],
+          newItems = items.remove().filter('.' + css);
+          $('#projects').append( newItems ).masonry( 'reload');
+      });
+    },
     site_projects_simulation: function() {
       PhysicsSimulations.init($('#simulation'));
     }

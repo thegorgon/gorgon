@@ -13,12 +13,12 @@ module Gorgon
       set_keywords "jesse reiss", "the gorgon lab", "gorgon", "technology", "entrepreneurship", "blog"
       set_description "the gorgon lab is the personal website and blog of jesse reiss. topics include technology, entrepreneurship, food, philosophy, and san francsico."
       cache_control :public, :max_age => 60
-      last_modified settings.start_time
+      last_modified settings.environment == :development ? Time.now : settings.start_time
       headers "X-Content-Type-Options" => "nosniff"
     end
     
     after do
-      etag settings.revision unless response['ETag'].present?
+      etag settings.revision unless settings.environment == :development || response['ETag'].present?
     end
     
     get '/?' do

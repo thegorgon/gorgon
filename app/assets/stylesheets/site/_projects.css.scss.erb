@@ -1,0 +1,191 @@
+@import "../shared/_mixins";
+
+
+#site_projects_index {
+  #controls {
+    margin: 10px 0;
+    .control {
+      float: left;
+      margin-bottom: 5px;
+      line-height: 30px;
+      font-size: 22px;
+      cursor: pointer;
+      @include tf;
+      margin-right: 15px;
+      .logo {
+        height: 30px;
+        margin-right: 5px;
+        width: 30px;
+        float: left;
+        background-color: transparent;
+        background-image: url(<%= asset_path "projects/controls.png" %>);;
+        background-repeat: no-repeat;
+      }
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    #mobile_control {
+      .logo{        
+        background-position: -142px 0;
+      }
+      &:hover {
+        .logo {
+          background-position: -142px -31px;
+        }
+      }      
+    }
+    #ruby_control {
+      .logo{        
+        background-position: 0 0;
+      }
+      &:hover {
+        .logo {
+          background-position: 0 -31px;
+        }
+      }
+    }
+    #javascript_control {
+      .logo{        
+        width: 46px;
+        background-position: -30px 0;
+      }
+      &:hover {
+        .logo {
+          background-position: -30px -31px;
+        }
+      }
+    }
+    #project_control {
+      .logo{        
+        background-position: -108px 0;
+        width: 35px;
+      }
+      &:hover {
+        .logo {
+          background-position: -108px -31px;
+        }
+      }
+    }
+    #web_control {
+      .logo{        
+        background-position: -81px 0;
+        width: 25px;
+      }
+      &:hover {
+        .logo {
+          background-position: -81px -31px;
+        }
+      }
+    }
+  }
+  #projects {
+    overflow: hidden;
+    .project {
+      width: 300px;
+      margin-right: 15px;
+      margin-bottom: 30px;
+      float: left;
+      text-decoration: none;
+      display: block;
+      color: #444;
+      &:hover {
+        .title {
+          text-decoration: underline;
+        }
+      }
+      .image {
+        margin: 0 10px 10px 0;
+        height: 200px;
+        width: 200px;
+        float: left;
+        background-color: transparent;
+        background-position: center center ;
+      }
+      .title {
+        @include tf;
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+      .description {
+        padding: 2px 0 0 0;
+        font-size: 12px;
+      }
+    }
+    #sinatra_sprockets {
+      .image {
+        background-image: url(<%= asset_path "projects/sinatra-sprockets-logo.png" %>);
+      }
+    }
+    #tumblrb {
+      .image {
+        background-image: url(<%= asset_path "projects/tumblrb-logo.png" %>);        
+      }
+    }
+    #jpop {
+      .image {
+        background-image: url(<%= asset_path "projects/jpop-logo.png" %>);        
+      }      
+    }
+    #jstretcher {
+      .image {
+        background-image: url(<%= asset_path "projects/jstretcher-logo.png" %>);        
+      }
+    }
+    #spotmembers {
+      .image {
+        background-image: url(<%= asset_path "projects/spotmembers-logo.png" %>);        
+      }
+    }
+    #spotforiphone {
+      .image {
+        background-image: url(<%= asset_path "projects/spotforiphone-logo.png" %>);        
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  #site_projects_index {
+    #projects {
+      .project {
+        width: 200px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 650px) {
+  #site_projects_index {
+    #projects {
+      .project {
+        width: 200px;
+      }
+    }
+  }
+}
+
+
+h1 {
+  margin-bottom: 15px;
+}
+#moon_simulation {
+  .controls {
+    margin-top: -5px;
+    width: 600px;
+    height: 20px;
+    @include gradient_top_down(#ddd, #999);
+    a {
+      text-align: center;
+      line-height: 20px;
+      display: block;
+      height: 20px;
+      width: 33px;
+      border-right: 1px solid #fff;
+      float: left;
+      &:hover {
+        @include gradient_top_down(#999, #ddd);
+      }
+    }
+  }
+}

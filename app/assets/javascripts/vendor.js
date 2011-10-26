@@ -3,4 +3,5 @@
 //= require vendor/jquery.ajax.js
 //= require vendor/jquery.tmpl.js
 //= require vendor/jquery.timeago.js
+//= require vendor/jquery.masonry.js
 //= require vendor/jquery.stretcher.js
