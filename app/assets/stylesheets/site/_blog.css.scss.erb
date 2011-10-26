@@ -7,6 +7,24 @@
       float: left;
       padding-right: 10px;
     }
+    #tags {
+      .tag {        
+        a {
+          text-decoration: none;
+        }
+        &:hover {
+          a {
+            color: #000;
+          }
+        }
+        &.active {
+          a {
+            color: #000;
+            border-bottom: 1px solid #000
+          }
+        }
+      }
+    }
   }
   .pagination {
     @include tf;

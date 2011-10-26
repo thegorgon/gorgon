@@ -21,7 +21,7 @@
     %h2 tags :
     %ul#tags.clearfix
       -Tumblr::Blog.tags.each do |tag|
-        %li.tag=link_to tag.downcase, url("/blog?tag=#{tag}")
+        %li.tag{:class => [tag == params[:tag] && "active"]}=link_to tag.downcase, url("/blog?tag=#{tag}")
 -elsif @subnav == :projects
   %nav.submenu
     %h2 filter :

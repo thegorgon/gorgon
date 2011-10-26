@@ -40,7 +40,9 @@
         e.preventDefault();
         var css = $(this).attr('id').split('_')[0],
           newItems = items.remove().filter('.' + css);
-          $('#projects').append( newItems ).masonry( 'reload');
+        $('#controls').find('.control').removeClass('active');
+        $(this).addClass('active');
+        $('#projects').append( newItems ).masonry( 'reload');
       });
     },
     site_projects_simulation: function() {
