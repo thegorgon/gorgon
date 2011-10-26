@@ -8,9 +8,36 @@
   %p my name is jesse reiss, and this is my website.
   %p i like putting my ideas in the tubes.
   %p i hope you like receiving them.
+
 %nav.ext.clearfix
   %a.twitter.first{:target => "_new", :href => "http://twitter.com/jessereiss"} &nbsp;
   %a.aboutme{:target => "_new", :href => "http://about.me/jessereiss"} &nbsp;
   %a.linkedin{:target => "_new", :href => "http://www.linkedin.com/in/jessereiss"} &nbsp;
   %a.github{:target => "_new", :href => "https://github.com/thegorgon"} &nbsp;
   %a.stackoverflow.last{:target => "_new", :href => "http://stackoverflow.com/users/654332/jesse-reiss"} &nbsp;
+  
+-if @subnav == :blog
+  %nav.submenu
+    %h2 tags :
+    %ul#tags.clearfix
+      -Tumblr::Blog.tags.each do |tag|
+        %li.tag=link_to tag.downcase, url("/blog?tag=#{tag}")
+-elsif @subnav == :projects
+  %nav.submenu
+    %h2 filter :
+    %ul#controls.clearfix
+      %li.control#project_control 
+        .logo
+        all
+      %li.control#ruby_control 
+        .logo
+        ruby
+      %li.control#javascript_control 
+        .logo
+        javascript
+      %li.control#mobile_control 
+        .logo
+        mobile
+      %li.control#web_control 
+        .logo
+        web

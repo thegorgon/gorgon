@@ -4,6 +4,7 @@ require 'bundler'
 Bundler.require(:default)
 
 require 'sinatra/base'
+require 'sass/plugin'
 require 'active_support/core_ext/string'
 require 'active_support/core_ext/hash'
 require 'active_support/core_ext/object'
@@ -43,6 +44,11 @@ Sinatra::Sprockets.configure do |config|
 
   config.precompile = ['scripts.js', 'vendor.js', 'site.css', /.+\.(png|ico|gif|jpeg|jpg)$/]
 end
+
+Sass::Plugin.options[:cache] = false
+Sass::Plugin.options[:cache_location] = './tmp/sass-cache'
+Sass::Plugin.options[:style] = :compressed
+Sass::Plugin.options[:sass2] = true
 
 Gorgon::Server.set(:start_time, Time.now)
 Gorgon::Server.set(:revision, Gorgon::Server.settings.environment == :development ? Digest::SHA1.hexdigest(Time.now.to_i.to_s) : `cat REVISION`.strip)

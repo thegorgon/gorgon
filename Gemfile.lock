@@ -1,27 +1,3 @@
-GIT
-  remote: git://github.com/thegorgon/sinatra-sprockets.git
-  revision: 7b596e17985127908de77e0394fd8dc24a0063a6
-  specs:
-    sinatra-sprockets (0.0.2)
-      closure-compiler
-      execjs
-      sprockets (~> 2.0.0)
-      therubyracer
-      uglifier
-      yui-compressor
-
-GIT
-  remote: git://github.com/thegorgon/tumblrb.git
-  revision: ae15a75ca5266eabd8c593ae60f2c9ac1a2339f1
-  specs:
-    tumblrb (2.0.2)
-      activesupport (~> 3.0)
-      addressable (~> 2.2.0)
-      faraday (~> 0.7.5)
-      json (~> 1.6.0)
-      redis-objects (~> 0.5.0)
-      will_paginate (~> 3.0.0)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -103,6 +79,13 @@ GEM
       rack (~> 1.3)
       rack-protection (~> 1.1)
       tilt (~> 1.3)
+    sinatra-sprockets (0.0.2)
+      closure-compiler
+      execjs
+      sprockets (~> 2.0.0)
+      therubyracer
+      uglifier
+      yui-compressor
     sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -110,6 +93,13 @@ GEM
     therubyracer (0.9.8)
       libv8 (~> 3.3.10)
     tilt (1.3.3)
+    tumblrb (2.0.3)
+      activesupport (~> 3.0)
+      addressable (~> 2.2.0)
+      faraday (~> 0.7.5)
+      json (~> 1.6.0)
+      redis-objects (~> 0.5.0)
+      will_paginate (~> 3.0.0)
     tux (0.3.0)
       ripl (>= 0.3.5)
       ripl-multi_line (>= 0.2.4)
@@ -140,10 +130,10 @@ DEPENDENCIES
   ruby-debug19
   sass
   sinatra
-  sinatra-sprockets (~> 0.0.2)!
+  sinatra-sprockets (~> 0.0.2)
   sprockets (~> 2.0)
   therubyracer
-  tumblrb (~> 2.0.1)!
+  tumblrb (~> 2.0.1)
   tux
   uglifier
   yui-compressor

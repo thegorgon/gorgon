@@ -1,6 +1,13 @@
 @import "../shared/_mixins";
 
 .site.blog {
+  nav.submenu {
+    display: none;
+    h2 {
+      float: left;
+      padding-right: 10px;
+    }
+  }
   .pagination {
     @include tf;
     font-size: 20px;
@@ -100,6 +107,9 @@
 }
 @media screen and (min-width: 650px) {
   .site.blog {
+    nav.submenu {
+      display: block;
+    }
     .post {
       margin-bottom: 30px;
       .comments.narrow, .comments.midWidth {

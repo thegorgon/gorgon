@@ -31,6 +31,20 @@ header {
   color: #000;
   text-align: left;
   margin-bottom: 10px;
+  nav.submenu {
+    display: none;
+    padding-top: 20px;
+    h2 {
+      font-weight: normal;
+      font-size: 18px;
+      @include tf;
+    }
+    li {
+      float: left;
+      display: block;
+      padding: 5px 5px 5px 0;
+    }
+  }
   summary {
     font-size: 14px;
     display: none;
@@ -88,6 +102,8 @@ a, a:visited {
   padding: 0 10px;
 }
 nav.ext {
+  clear: both;
+  width: 200px;
   margin: 20px 0 0 0;
   h2 {
     @include tf;
@@ -154,8 +170,12 @@ h1, h2 {
     width: 480px;
   }
   header {
-    margin: 0 auto;
+    width: 460px;
+    margin: 0 auto 10px auto;
     text-align: center;
+    nav.ext {
+      margin: 20px auto 0;
+    }
   }
 }
 
@@ -171,6 +191,9 @@ h1, h2 {
     top: 0;
     float: right;
     summary {
+      display: block;
+    }
+    nav.submenu {
       display: block;
     }
   }

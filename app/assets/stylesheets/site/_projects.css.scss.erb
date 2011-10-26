@@ -2,13 +2,23 @@
 
 
 #site_projects_index {
+  header {
+    nav.submenu {
+      h2 {
+        float: left;
+        padding-right: 10px;
+        margin-top: 15px;
+        line-height: 28px;
+      }
+    }
+  }
   #controls {
-    margin: 10px 0 20px;
+    margin: 10px 0 0px;
     .control {
       float: left;
       margin-bottom: 5px;
       line-height: 30px;
-      font-size: 22px;
+      font-size: 20px;
       cursor: pointer;
       @include tf;
       margin-right: 15px;
@@ -80,6 +90,7 @@
     }
   }
   #projects {
+    margin-top: 20px;
     overflow: hidden;
     .project {
       width: 300px;
@@ -108,6 +119,7 @@
         margin-bottom: 5px;
       }
       .description {
+        min-height: 35px;
         padding: 2px 0 0 0;
         font-size: 12px;
       }
@@ -145,6 +157,25 @@
   }
 }
 
+@media screen and (min-width: 480px) and (max-width: 650px) {
+  #site_projects_index {
+    
+    #projects {
+      .project {
+        width: 200px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 650px) {
+  #site_projects_index {
+    #projects {
+      margin-top: 0px
+    }
+  }
+}
+
 @media screen and (min-width: 1000px) {
   #site_projects_index {
     #projects {
@@ -154,17 +185,6 @@
     }
   }
 }
-
-@media screen and (min-width: 480px) and (max-width: 650px) {
-  #site_projects_index {
-    #projects {
-      .project {
-        width: 200px;
-      }
-    }
-  }
-}
-
 
 h1 {
   margin-bottom: 15px;

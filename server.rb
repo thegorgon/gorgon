@@ -46,8 +46,8 @@ module Gorgon
         last_modified @posts.first.date
         etag Digest::SHA1.hexdigest(Time.now.to_i.to_s)
       end
-      puts @posts.inspect
-      haml :blog, :locals => {:posts => @posts}
+      @subnav = :blog
+      haml :blog
     end
     
     get '/blog.xml' do
@@ -56,7 +56,7 @@ module Gorgon
         last_modified @posts.first.date
         etag Digest::SHA1.hexdigest(Time.now.to_i.to_s)
       end
-      builder :blog, :locals => {:posts => @posts}
+      builder :blog
     end
 
     get '/blog/:slug' do
@@ -71,7 +71,7 @@ module Gorgon
       append_keywords @post.tags
       set_description @post.body.html_strip.max_length(200, '...')
       
-      haml :post, :locals => {:post => @post, :show_comments => true, :first_or_last => "first"}
+      haml :post, :locals => {:show_comments => true, :first_or_last => "first"}
     end
         
     get '/twitter' do
@@ -83,6 +83,7 @@ module Gorgon
     get '/projects' do
       prepend_title "projects"
       set_namespace "site_projects_index"
+      @subnav = :projects
       haml :projects
     end
     
