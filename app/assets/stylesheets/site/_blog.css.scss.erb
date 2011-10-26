@@ -30,11 +30,23 @@
     @include tf;
     font-size: 20px;
     float: right;
-    margin: 20px;
+    margin: 20px 0;
+    width: 300px;
+    a {
+      float: right;
+    }
+    &.next.previous {
+      a.previous {
+        float: left;
+      }
+    }
     a {
       color: #000;
       text-decoration: none;
       padding: 0 5px;
+      &:hover {
+        border-bottom: 1px solid #000;
+      }
     }
   }
   .post {

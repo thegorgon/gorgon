@@ -38,6 +38,21 @@ module Gorgon
       redirect to('/blog'), 301
     end
     
+    get '/blog/:slug' do
+      set_namespace "site_blog_show"
+      @post = Tumblr::Blog.entry(params[:slug])
+      raise Sinatra::NotFound unless @post
+
+      last_modified @post.date
+      etag @post.etag
+      
+      prepend_title @post.title
+      append_keywords @post.tags
+      set_description @post.body.html_strip.max_length(200, '...')
+      
+      haml :post, :locals => {:post => @post, :show_comments => true, :first_or_last => "first"}
+    end
+        
     get '/blog' do
       set_namespace "site_blog_index"
       @posts = Tumblr::Blog.page(params[:page]).per_page(3)
@@ -59,21 +74,6 @@ module Gorgon
       builder :blog
     end
 
-    get '/blog/:slug' do
-      set_namespace "site_blog_show"
-      @post = Tumblr::Blog.entry(params[:slug])
-      raise Sinatra::NotFound unless @post
-
-      last_modified @post.date
-      etag @post.etag
-      
-      prepend_title @post.title
-      append_keywords @post.tags
-      set_description @post.body.html_strip.max_length(200, '...')
-      
-      haml :post, :locals => {:show_comments => true, :first_or_last => "first"}
-    end
-        
     get '/twitter' do
       set_namespace "site_home_twitter"
       @ext = "http://www.twitter.com/#!/jessereiss"

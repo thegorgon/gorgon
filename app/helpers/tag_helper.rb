@@ -13,7 +13,7 @@ module TagHelper
     string = ''
 
     if encode == "javascript"
-      html   = content_tag("a", name || email_address_obfuscated, html_options.merge("href" => "mailto:#{email_address}"))
+      html   = content_tag("a", name || email_address_obfuscated, html_options.merge("href" => "mailto:#{email_address}"), false)
       "document.write('#{html}');".each_byte do |c|
         string << sprintf("%%%x", c)
       end
@@ -32,14 +32,14 @@ module TagHelper
         char = c.chr
         string << (char =~ /\w/ ? sprintf("%%%x", c) : char)
       end
-      content_tag "a", name || email_address_encoded, html_options.merge("href" => "#{string}")
+      content_tag "a", name || email_address_encoded, html_options.merge("href" => "#{string}"), false
     else
-      content_tag "a", name || email_address_obfuscated, html_options.merge("href" => "mailto:#{email_address}")
+      content_tag "a", name || email_address_obfuscated, html_options.merge("href" => "mailto:#{email_address}"), false
     end
   end
   
   def link_to(text, url, options={})
-    content_tag("a", text, options.merge!(:href => url))
+    content_tag("a", text, options.merge!(:href => url), false)
   end
   
   def img_link_to(src, url, options={})

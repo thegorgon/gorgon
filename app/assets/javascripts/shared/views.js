@@ -27,6 +27,7 @@
       $.getJSON(url, {count: 50}, function(data) { 
         var user = data[0].user;
         $('.profoto').html($('<img></img>').attr('src', user.profile_image_url));
+        $.logger.debug(data);
         $('#timeline').append($( "#tweetTpl" ).tmpl( data )).removeClass('loading');
       });
     },
