@@ -43,7 +43,7 @@ Sinatra::Sprockets.configure do |config|
   config.digest = config.compress = !testing
   config.debug = testing
 
-  config.precompile = ['scripts.js', 'vendor.js', 'site.css', 'examples/*', /.+\.(png|ico|gif|jpeg|jpg)$/]
+  config.precompile = ['scripts.js', 'vendor.js', 'site.css', /^examples\//, /.+\.(png|ico|gif|jpeg|jpg)$/]
 end
 
 Sass::Plugin.options[:cache] = false
