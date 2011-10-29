@@ -54,7 +54,7 @@
         %label{:for => "long"} long :
         %input#long{"aria-label" => "long", :minlength => "10", :name => "long", :placeholder => "long field", :type => "text"}
       %li
-        %label{:for => "numbers"} only numbers :
+        %label{:for => "numbers"} numbers :
         %input#numbers{"aria-label" => "numbers", :name => "numbers", :pattern => "\\d+", :placeholder => "numbers", :type => "text"}
       %li.error-messages
       %li
@@ -206,7 +206,7 @@
           name: "server_check",
           selector: "#server-validated",
           onSubmit: false,
-          message: "cannot find ${name} '${val}' amongst Yahoo artists",
+          message: "cannot find ${name} '${val}'",
           test: function(element) {
             var val = element.val(),
               self = this,

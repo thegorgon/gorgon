@@ -139,7 +139,7 @@
         name: "server_check",
         selector: "#server-validated",
         onSubmit: false,
-        message: "cannot find ${name} '${val}' amongst Yahoo artists",
+        message: "cannot find ${name} '${val}'",
         test: function(element) {
           var val = element.val(),
             self = this,
