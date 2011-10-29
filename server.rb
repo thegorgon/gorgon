@@ -6,7 +6,8 @@ module Gorgon
     helpers TagHelper,
             MetaHelper, 
             Sinatra::Sprockets::Helpers, 
-            ApplicationHelper
+            ApplicationHelper,
+            Sinatra::ContentFor
     
     before do
       set_title "the gorgon lab - rants and ravings from the mind of jesse reiss"
@@ -85,6 +86,12 @@ module Gorgon
       set_namespace "site_projects_index"
       @subnav = :projects
       haml :projects
+    end
+    
+    get '/projects/autovalidator' do
+      prepend_title "the autovalidator"
+      set_namespace "site_projects_autovalidator"
+      haml :"projects/autovalidator"      
     end
     
     get %r{/422(.html)?} do

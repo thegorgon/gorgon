@@ -79,6 +79,8 @@ GEM
       rack (~> 1.3)
       rack-protection (~> 1.1)
       tilt (~> 1.3)
+    sinatra-content-for (0.2)
+      sinatra
     sinatra-sprockets (0.0.2)
       closure-compiler
       execjs
@@ -130,6 +132,7 @@ DEPENDENCIES
   ruby-debug19
   sass
   sinatra
+  sinatra-content-for
   sinatra-sprockets (~> 0.0.2)
   sprockets (~> 2.0)
   therubyracer

@@ -11,6 +11,18 @@ html, body {
 h1 {
   font-size: 2.5em;
 }
+code {
+  font-family: monospace;
+  white-space: pre;
+  color: #666;
+  background: white;
+}
+code.block {
+  overflow: auto;
+  display: block;
+  border: 1px solid #666;
+  padding: 10px 15px;
+}
 .vcc {
   display: table;
   width: 100%;

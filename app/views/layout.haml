@@ -27,6 +27,7 @@
     #fb-root
     = javascript_include_tag "vendor.js"
     = javascript_include_tag "scripts.js"
+    = yield_content :scripts
     %script{:type => "text/javascript", :src => "http://platform.twitter.com/widgets.js"}
     :javascript
       (function() {

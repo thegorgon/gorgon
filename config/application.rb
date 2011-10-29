@@ -5,6 +5,7 @@ Bundler.require(:default)
 
 require 'sinatra/base'
 require 'sass/plugin'
+require 'sinatra/content_for'
 require 'active_support/core_ext/string'
 require 'active_support/core_ext/hash'
 require 'active_support/core_ext/object'
