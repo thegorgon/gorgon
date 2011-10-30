@@ -1,5 +1,22 @@
 #site_projects_autovalidator {
+  .forkme {
+    width: 32px;
+    height: 32px;
+    margin: 5px 0;
+    display: block;
+    text-decoration: none;
+    background-color: transparent;
+    background-image: url(<%= asset_path('logos/external.png') %>);
+    background-repeat: no-repeat;
+    background-position: -70px 0;
+    float: right;
+    &:hover {
+      background-position: -70px -36px; 
+    }
+  }
   h1#projtitle {
+    line-height: 40px;
+    font-size: 25px;
     padding-left: 50px;
     background: transparent url(<%= asset_path "projects/theautovalidator-logo-small.png" %>) no-repeat left center;
     margin: 0 0 20px;
@@ -90,6 +107,9 @@
 
 @media screen and (min-width: 480px) and (max-width: 650px) {
   #site_projects_autovalidator {
+    h1#projtitle {
+      font-size: 30px;
+    }
     .errors {
       display: inline;
       padding-left: 5px;
@@ -99,6 +119,9 @@
 
 @media screen and (min-width: 1000px) {
   #site_projects_autovalidator {
+    h1#projtitle {
+      font-size: 30px;
+    }
     .errors {
       display: inline;
       padding-left: 5px;

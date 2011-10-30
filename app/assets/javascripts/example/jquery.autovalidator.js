@@ -175,7 +175,7 @@
       element = $(element);
       
       if (this._shouldBeRunOn(element, options)) {
-        this._testFn.call(this, element);
+        this._testFn.call(this, element, options);
       }
     }
   });
