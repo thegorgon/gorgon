@@ -1,32 +1,42 @@
+@import "../shared/_mixins";
+
 #site_projects_autovalidator {
-  .forkme {
-    width: 32px;
-    height: 32px;
-    margin: 5px 0;
-    display: block;
-    text-decoration: none;
-    background-color: transparent;
-    background-image: url(<%= asset_path('logos/external.png') %>);
-    background-repeat: no-repeat;
-    background-position: -70px 0;
-    float: right;
-    &:hover {
-      background-position: -70px -36px; 
-    }
-  }
-  h1#projtitle {
-    line-height: 40px;
-    font-size: 25px;
-    padding-left: 50px;
-    background: transparent url(<%= asset_path "projects/theautovalidator-logo-small.png" %>) no-repeat left center;
-    margin: 0 0 20px;
+  #bd {
+    h1 {
+      line-height: 40px;
+      font-size: 25px;
+      padding-left: 50px;
+      background: transparent url(<%= asset_path "projects/theautovalidator-logo-small.png" %>) no-repeat left center;
+      margin: 0 0 20px;
+    }    
   }
   p {
     margin: 10px 0;
   }
+  pre {
+    padding: 0;
+    word-wrap: normal;
+  }
   .example {
     margin: 0 0 30px 0;
     font-size: 12px;
+    table {
+      margin: 20px 0;
+      td {
+        border-bottom: 1px solid #ededed;
+        padding: 5px;
+      }
+      td.code {
+        background: #fff;
+      }
+      td.spacer {
+      }
+      td.annotate {
+        padding-left: 10px;
+        border-bottom: 1px solid #ccc;
+        background: transparent;
+      }
+    }
     p {
       margin: 5px 0;
     }
@@ -34,14 +44,14 @@
       margin: 20px 0 0;
       list-style: none;
     }
-    .source, .hidesrc {
+    pre, .hidesrc {
       display: none;
     }
     &.withsrc {
       .showsrc {
         display: none;
       }
-      .source, .hidesrc {
+      pre, .hidesrc {
         display: block;
       }
     }
@@ -66,16 +76,24 @@
     padding-left: 80px;
     line-height: 30px;
   }
-  h3 {
+  h2 {
     font-size: 14px;
     font-weight: bold;
+    @include nf;
     margin: 10px 0;
   }
   .error-messages {
-    height: 12px;
-    margin-left: 89px;
+    height: 0px;
+    padding: 0;
+    margin: 0;
     color: #933;
     font-size: 11px;
+  }
+  form.invalid {
+    .error-messages {
+      margin: 10px 10px 10px 89px;
+      height: 12px
+    }
   }
   li.invalid {
     label {

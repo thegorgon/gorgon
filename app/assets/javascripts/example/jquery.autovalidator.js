@@ -84,7 +84,7 @@
     defaults: {
       selector: '*',
       test: function(element) { this.validity(element, true); },
-      message: "",
+      message: "${name} is invalid.",
       onChange: true,
       onSubmit: true
     }
