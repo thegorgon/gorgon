@@ -93,7 +93,7 @@ module Gorgon
       set_namespace "site_projects_autovalidator"
       haml :"projects/autovalidator"      
     end
-    
+        
     get %r{/422(.html)?} do
       set_namespace "site_errors_unprocessable"
       status 422

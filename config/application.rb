@@ -15,6 +15,8 @@ require 'active_support/core_ext/class'
   require File.expand_path("../../#{dir}", __FILE__)
 end
 
+$redis = Redis.new(:host => "localhost", :port => 2811)
+
 Tumblr.configure do |config|
   config.blog = "thegorgonlab"
   config.api_key = "1pLfP3eTlFjZi3trs2Medo78EwAaOLxMEAHUsRpfEoOS3nhbd8"
@@ -43,7 +45,7 @@ Sinatra::Sprockets.configure do |config|
   config.digest = config.compress = !testing
   config.debug = testing
 
-  config.precompile = ['scripts.js', 'vendor.js', 'site.css', /^example\/.+/, /.+\.(png|ico|gif|jpeg|jpg)$/]
+  config.precompile = ['scripts.js', 'vendor.js', 'site.css', /^compiled\/.+/, /.+\.(png|ico|gif|jpeg|jpg)$/]
 end
 
 Sass::Plugin.options[:cache] = false
