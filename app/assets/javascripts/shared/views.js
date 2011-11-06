@@ -52,6 +52,16 @@
       });
     },
     site_projects_autovalidator: function() {
+      window.hljs.initHighlighting();
+      $('.line-by-line').each(function(i) {
+        language = $(this).attr('data-lang');
+        $(this).find('code').each(function(i) {
+          var code = $(this).text(),
+            highlight = hljs.highlight(language, code);
+          $(this).addClass(highlight.language);
+          $(this).html(highlight.value);
+        });
+      });
       $('form#example1').autovalidator();
 
       $('form#example2').autovalidator({
@@ -62,19 +72,18 @@
         }
       });
 
-      $('form#example3').autovalidator({
-        change: function(event, validator) {
-          var container = $(event.target).parent(),
-            errors = validator.errors();            
-          container.removeClass('invalid').removeClass('valid').removeClass('loading').addClass(event.status);
+      $('form#example3').autovalidator();
+      $('form#example3').autovalidator("option", "change", function(event, validator) {
+        var container = $(event.target).parent(),
+          errors = validator.errors();            
+        container.removeClass('invalid').removeClass('valid').removeClass('loading').addClass(event.status);
 
-          if (errors.length > 0) {
-            $(this).addClass("invalid");
-            $(this).find('.error-messages').html(errors[0]);
-          } else {
-            $(this).removeClass("invalid");
-            $(this).find('.error-messages').html('');
-          }
+        if (errors.length > 0) {
+          $(this).addClass("invalid");
+          $(this).find('.error-messages').html(errors[0]);
+        } else {
+          $(this).removeClass("invalid");
+          $(this).find('.error-messages').html('');
         }
       });
       
@@ -132,10 +141,10 @@
           container.find('.errors').html(event.status == "loading" ? "loading..." : event.message || "");
         }
       });
-      
+  
       $('form#example5').autovalidator('register', {
         name: "server_check",
-        selector: "#server-validated",
+        selector: "#artist-name",
         onSubmit: false,
         message: "cannot find ${name} '${val}'",
         test: function(element) {
@@ -171,7 +180,7 @@
       $('form').submit(function(e) {
         e.preventDefault();
         if ($(this).data('autovalidator').validate()) {
-          alert("SUBMIT!");
+          alert("Form was submitted successfully!");
         }
         return false;
       });

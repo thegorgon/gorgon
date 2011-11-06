@@ -19,8 +19,10 @@ gem 'i18n'
 gem 'execjs'
 gem 'therubyracer'
 gem "sinatra-sprockets", "~> 0.0.2"
+gem "maruku"
 
 group :development, :test do
+  gem 'shotgun'
   gem 'tux'
   gem 'ruby-debug19'
   gem 'mongrel', '1.2.0.pre2'

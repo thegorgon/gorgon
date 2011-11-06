@@ -10,16 +10,18 @@
       margin: 0 0 20px;
     }    
   }
-  p {
+  p, ul {
+    font-size: 14px;
     margin: 10px 0;
   }
   pre {
+    font-size: 12px;
     padding: 0;
     word-wrap: normal;
   }
   .example {
     margin: 0 0 30px 0;
-    font-size: 12px;
+    line-height: 1.2em;
     table {
       margin: 20px 0;
       td {
@@ -27,18 +29,19 @@
         padding: 5px;
       }
       td.code {
+        font-size: 12px;
+        vertical-align: middle;
         background: #fff;
       }
-      td.spacer {
-      }
       td.annotate {
+        font-size: 12px;
         padding-left: 10px;
         border-bottom: 1px solid #ccc;
         background: transparent;
       }
     }
     p {
-      margin: 5px 0;
+      margin: 10px 0;
     }
     ul {
       margin: 20px 0 0;
@@ -77,10 +80,10 @@
     line-height: 30px;
   }
   h2 {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: bold;
     @include nf;
-    margin: 10px 0;
+    margin: 20px 0 10px;
   }
   .error-messages {
     height: 0px;
@@ -88,6 +91,9 @@
     margin: 0;
     color: #933;
     font-size: 11px;
+  }
+  form {
+    font-size: 12px;
   }
   form.invalid {
     .error-messages {
