@@ -9,7 +9,7 @@ gem 'haml'
 gem 'sass'
 gem 'sprockets', '~> 2.0'
 gem 'redis-objects'
-gem "tumblrb", "~> 2.0.1", :require => "tumblr"
+gem "tumblrb", "~> 2.0.1", :require => "tumblr", :git => "git://github.com/thegorgon/tumblrb.git", :ref => "master"
 gem 'builder'
 gem 'uglifier'
 gem 'closure-compiler'

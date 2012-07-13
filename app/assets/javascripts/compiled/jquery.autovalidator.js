@@ -321,7 +321,7 @@
         return this;
       } else {
         val = parseFloat($(this).val(), 10);
-        return val ? val : 0;
+        return val && val == $(this).val() ? val : null;
       }
     },
     minValue: function(val) {
@@ -486,7 +486,7 @@
     },
     test: function(element) {
       var floatVal = element.floatVal();
-      this.validity(element, floatVal <= element.maxValue() && floatVal >= element.minValue());
+      this.validity(element, floatVal !== null && floatVal <= element.maxValue() && floatVal >= element.minValue());
     }
   });
 }(jQuery, window));
